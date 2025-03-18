@@ -1,0 +1,100 @@
+.HeroIphoneWidget-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.HeroIphoneWidget-rings {
+  position: relative;
+  width: 20vw;
+  height: 20vh;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.HeroIphoneWidget-badge.distance {
+  color: #4cd964;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.HeroIphoneWidget-metrics {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.HeroIphoneWidget-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding-top: 1rem;
+}
+
+.HeroIphoneWidget-metricIcon {
+  font-size: 2vh;
+  margin-bottom: 5px;
+}
+
+.HeroIphoneWidget-metricIcon.steps {
+  color: #8a4fff;
+}
+
+.HeroIphoneWidget-metricIcon.calories {
+  color: #ff9d4a;
+}
+
+.HeroIphoneWidget-metricIcon.distance {
+  color: #4cd964;
+}
+
+.HeroIphoneWidget-metricLabel {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.HeroIphoneWidget-metricValue {
+  font-size: 2vh;
+  font-weight: bold;
+  color: #333;
+}
+
+.HeroIphoneWidget-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.HeroIphoneWidget-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e8e8e8;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.HeroIphoneWidget-button:hover {
+  background-color: #d8d8d8;
+}
+
+.HeroIphoneWidget-buttonLabel {
+  font-size: 10px;
+  margin-top: 5px;
+  color: #333;
+}

@@ -1,0 +1,107 @@
+.LandingPageDownloadApp-section {
+  padding: 80px 0; 
+  background-color: #fff;
+}
+
+.LandingPageDownloadApp-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.LandingPageDownloadApp-phone {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-height: 60vh;
+  overflow: hidden;
+}
+
+.LandingPageDownloadApp-content {
+  flex: 1;
+  max-width: 500px;
+}
+
+.LandingPageDownloadApp-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.LandingPageDownloadApp-description {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.LandingPageDownloadApp-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.LandingPageDownloadApp-button {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.LandingPageDownloadApp-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.LandingPageDownloadApp-button-apple {
+  background-color: #000;
+}
+
+.LandingPageDownloadApp-button-google {
+  background-color: #000;
+}
+
+.LandingPageDownloadApp-button-icon {
+  font-size: 24px;
+  margin-right: 12px;
+}
+
+.LandingPageDownloadApp-button-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.LandingPageDownloadApp-button-small {
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+.LandingPageDownloadApp-button-large {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Responsive styles */
+@media (max-width: 960px) {
+  .LandingPageDownloadApp-container {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  
+  .LandingPageDownloadApp-content {
+    max-width: 100%;
+  }
+  
+  .LandingPageDownloadApp-buttons {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,193 @@
+.HealthBlog-subscribe {
+  background-color: white;
+  border-radius: 1.2rem;
+  padding: 2.5rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.HealthBlog-subscribe::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #ff8f00, #ff6b00);
+}
+
+.HealthBlog-subscribe-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.HealthBlog-subscribe-icon {
+  color: #ff6b00;
+  font-size: 1.8rem;
+  filter: drop-shadow(0 2px 4px rgba(255, 107, 0, 0.2));
+}
+
+.HealthBlog-subscribe-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.HealthBlog-subscribe-text {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.HealthBlog-subscribe-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  overflow: hidden;
+}
+
+.HealthBlog-form-group {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.HealthBlog-subscribe-input {
+  width: 90%;
+  padding: 1.2rem 1.2rem 1.2rem 3rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.8rem;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+}
+
+.HealthBlog-input-icon {
+  position: absolute;
+  left: 7%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 1.1rem;
+}
+
+.HealthBlog-subscribe-input:focus {
+  outline: none;
+  border-color: #ff6b00;
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.HealthBlog-subscribe-button {
+  background: linear-gradient(135deg, #ff8f00 0%, #ff6b00 100%);
+  color: white;
+  border: none;
+  border-radius: 0.8rem;
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  box-shadow: 0 8px 15px rgba(255, 107, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.HealthBlog-subscribe-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  transition: all 0.6s ease;
+}
+
+.HealthBlog-subscribe-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 20px rgba(255, 107, 0, 0.3);
+}
+
+.HealthBlog-subscribe-button:hover::before {
+  left: 100%;
+}
+
+.HealthBlog-subscribe-success {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+  padding: 1.2rem;
+  border-radius: 0.8rem;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 5px 15px rgba(40, 167, 69, 0.1);
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dark-mode .HealthBlog-subscribe {
+  background-color: #1a1a1a;
+  border-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .HealthBlog-subscribe-title {
+  color: #f0f0f0;
+}
+
+.dark-mode .HealthBlog-subscribe-text {
+  color: #b0b0b0;
+}
+
+.dark-mode .HealthBlog-subscribe-input {
+  background-color: #2a2a2a;
+  border-color: #444;
+  color: #f0f0f0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .HealthBlog-input-icon {
+  color: #777;
+}
+
+.dark-mode .HealthBlog-subscribe-success {
+  background-color: rgba(40, 167, 69, 0.2);
+}
+
+@media (max-width: 480px) {
+  .HealthBlog-subscribe {
+    padding: 2rem 1.5rem;
+    border-radius: 1rem;
+  }
+  
+  .HealthBlog-subscribe-title {
+    font-size: 1.5rem;
+  }
+  
+  .HealthBlog-subscribe-text {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .HealthBlog-subscribe-button {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}

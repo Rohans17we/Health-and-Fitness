@@ -1,0 +1,34 @@
+.dark-mode-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.dark-mode-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.dark-mode-button svg {
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+/* Button appearance in dark mode */
+.dark-mode .dark-mode-button {
+  background-color: #333;
+  color: #f0f0f0;
+}

@@ -1,0 +1,71 @@
+
+.HeroWidget-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  max-height: 80vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.HeroWidget-container-left{
+  flex: 1;
+  height: 60vh;
+  display: flex;
+  align-content: flex-end;
+  justify-content: flex-end;
+}
+.HeroWidget-container-left-subcontainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 1rem;
+}
+
+.HeroWidget-container-center{
+  flex: 1;
+  width: 33vw;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.HeroWidget-container-right{
+  flex: 1;
+  height: 60vh;
+  display: flex;
+  align-content: flex-start;
+  justify-content: flex-start;
+}
+.HeroWidget-container-right-subcontainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .HeroWidget-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    overflow: hidden;
+    gap: 2rem;
+    height: auto;
+  }
+
+  .HeroWidget-container-left{
+    display: none;
+  }
+  .HeroWidget-container-right{
+    display: none;
+  }
+
+  .HeroWidget-container-center{
+    width: 90vw;
+    min-height: 30vh;
+    overflow: hidden;
+  }
+}

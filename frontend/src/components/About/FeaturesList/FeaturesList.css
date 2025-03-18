@@ -1,0 +1,237 @@
+/* Features List Section */
+.features-list-section {
+  padding: 80px 40px;
+  background-color: #f8f9fa;
+  position: relative;
+  overflow: hidden;
+}
+
+.features-list-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 10% 10%, rgba(255, 107, 0, 0.05) 0%, transparent 60%);
+  z-index: 0;
+}
+
+.features-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Features intro section */
+.features-intro {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.features-intro-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+  position: relative;
+  display: inline-block;
+}
+
+.features-intro-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #ff8f00, #ff6b00);
+  border-radius: 2px;
+}
+
+.features-intro-text {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Features grid with flexbox */
+.features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+/* Feature cards */
+.feature-card {
+  background: white;
+  width: 30vw;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-width: 380px;
+  margin-bottom: 0;
+}
+@media (max-width: 600px) {
+  .feature-card {
+    width: 60vw;
+  }
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+  border-color: rgba(255, 107, 0, 0.2);
+  background-color: #fffaf5;
+}
+
+.feature-icon {
+  font-size: 2rem;
+  color: #ff6b00;
+  margin-right: 18px;
+  background: rgba(255, 107, 0, 0.1);
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(255, 107, 0, 0.1);
+}
+
+.feature-check {
+  color: white;
+  margin-right: 12px;
+  font-weight: bold;
+  background: #ff6b00;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  box-shadow: 0 2px 5px rgba(255, 107, 0, 0.2);
+}
+
+.feature-item {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.5;
+  font-size: 1.05rem;
+  color: #555;
+}
+
+.feature-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.feature-icon {
+  font-size: 2rem;
+  color: #ff6b00;
+  margin-right: 18px;
+  background: rgba(255, 107, 0, 0.1);
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.feature-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+  line-height: 1.3;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.feature-item {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.5;
+  font-size: 1.05rem;
+}
+
+.feature-check {
+  color: #ff6b00;
+  margin-right: 12px;
+  font-weight: bold;
+  background: rgba(255, 107, 0, 0.1);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* Dark Mode */
+.dark-mode .features-list-section {
+  background-color: #1a1a1a;
+}
+
+.dark-mode .features-list-section::before {
+  background-image: radial-gradient(circle at 10% 10%, rgba(255, 107, 0, 0.08) 0%, transparent 60%);
+}
+
+.dark-mode .features-intro-title {
+  color: #ffffff;
+}
+
+.dark-mode .features-intro-text {
+  color: #b0b0b0;
+}
+
+.dark-mode .feature-card {
+  background: #2c2c2e;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .feature-card:hover {
+  border-color: rgba(255, 107, 0, 0.3);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .feature-title {
+  color: #ffffff;
+}
+
+.dark-mode .feature-item {
+  color: #e0e0e0;
+}
+
+.dark-mode .feature-icon,
+.dark-mode .feature-check {
+  background: rgba(255, 107, 0, 0.15);
+}
+

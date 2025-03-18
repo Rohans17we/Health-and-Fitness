@@ -1,0 +1,394 @@
+.dashboard-home {
+  padding: 1rem;
+}
+
+.dashboard-overview {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.dashboard-overview h2 {
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.user-avatar {
+  flex-shrink: 0;
+}
+
+.user-avatar img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #666;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-label {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.user-name {
+  margin: 0.3rem 0 1.5rem 0;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.online-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #4CAF50;
+  display: inline-block;
+}
+
+.user-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.metric {
+  text-align: center;
+}
+
+.metric-label {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.metric-value {
+  margin: 0.3rem 0 0 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.metric-unit {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #666;
+}
+
+.metric-status {
+  font-size: 0.8rem;
+  font-weight: normal;
+  color: white;
+  background-color: #4CAF50;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+  margin-left: 0.5rem;
+}
+
+.dashboard-statistics {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+.statistics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.statistics-header h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #333;
+}
+
+.time-period {
+  color: #666;
+  margin: 0;
+}
+
+.statistics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.statistics-grid.secondary {
+  margin-bottom: 0;
+}
+
+.statistic-card {
+  background-color: #f9f9f9;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.statistic-card.horizontal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statistic-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.statistic-card.horizontal .statistic-header {
+  margin-bottom: 0;
+}
+
+.statistic-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.statistic-icon.calories,
+.statistic-icon.calories-consumed {
+  background-color: #9C27B0;
+}
+
+.statistic-icon.calories-burned {
+  background-color: #FF5722;
+}
+
+.statistic-icon.heart-rate {
+  background-color: #E91E63;
+}
+
+.statistic-icon.steps {
+  background-color: #3F51B5;
+}
+
+.statistic-icon.activity {
+  background-color: #4CAF50;
+}
+
+.statistic-icon.sleep {
+  background-color: #2196F3;
+}
+
+.statistic-icon.hydration {
+  background-color: #00BCD4;
+}
+
+.statistic-header p {
+  margin: 0;
+  color: #666;
+}
+
+.statistic-value {
+  margin-bottom: 1rem;
+}
+
+.statistic-value h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.statistic-goal, .statistic-unit {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #666;
+}
+
+.statistic-chart {
+  margin-top: 1rem;
+}
+
+.chart-label {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.chart-value {
+  margin: 0 0 0.8rem 0;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.bar-chart {
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.bar {
+  flex: 1;
+  background: linear-gradient(to top, #ff8f00, #ff6b00);
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease;
+}
+
+.line-chart {
+  height: 100px;
+  position: relative;
+}
+
+.heart-rate-chart {
+  height: 100%;
+  position: relative;
+}
+
+.heart-rate-point {
+  position: absolute;
+  width: 2px;
+  background-color: #E91E63;
+  bottom: 0;
+}
+
+.dot-chart {
+  margin-top: 0.5rem;
+}
+
+.dot-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  margin: 0 auto;
+}
+
+.dot.active {
+  background-color: #4CAF50;
+}
+
+/* Dark Mode Styles */
+.dark-mode .dashboard-overview,
+.dark-mode .dashboard-statistics {
+  background-color: #1e1e1e;
+}
+
+.dark-mode .dashboard-overview h2,
+.dark-mode .statistics-header h2 {
+  color: #f0f0f0;
+}
+
+.dark-mode .avatar-placeholder {
+  background-color: #333;
+  color: #b0b0b0;
+}
+
+.dark-mode .user-label,
+.dark-mode .metric-label,
+.dark-mode .time-period,
+.dark-mode .statistic-header p,
+.dark-mode .chart-label {
+  color: #b0b0b0;
+}
+
+.dark-mode .user-name,
+.dark-mode .metric-value,
+.dark-mode .statistic-value h3,
+.dark-mode .chart-value {
+  color: #f0f0f0;
+}
+
+.dark-mode .metric-unit,
+.dark-mode .statistic-goal,
+.dark-mode .statistic-unit {
+  color: #b0b0b0;
+}
+
+.dark-mode .statistic-card {
+  background-color: #2a2a2a;
+}
+
+.dark-mode .dot {
+  background-color: #444;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .statistics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-profile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .user-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .statistic-card.horizontal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .statistic-card.horizontal .statistic-header {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-metrics {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .metric {
+    text-align: left;
+  }
+  
+  .statistics-grid.secondary {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,72 @@
+/* Feature Why Section */
+.feature-why-section {
+  padding: 80px 40px;
+  background-color: white;
+}
+
+.feature-why-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.feature-why-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.feature-why-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.feature-why-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Dark Mode */
+.dark-mode .feature-why-section {
+  background-color: #2c2c2e;
+}
+
+.dark-mode .feature-why-title {
+  color: #ffffff;
+}
+
+.dark-mode .feature-why-text {
+  color: #b0b0b0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .feature-why-section {
+    padding: 60px 30px;
+  }
+  
+  .feature-why-title {
+    font-size: 2rem;
+  }
+  
+  .feature-why-text {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .feature-why-section {
+    padding: 50px 20px;
+  }
+  
+  .feature-why-title {
+    font-size: 1.8rem;
+  }
+  
+  .feature-why-text {
+    font-size: 1rem;
+  }
+}

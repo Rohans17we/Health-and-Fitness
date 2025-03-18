@@ -1,0 +1,124 @@
+.ChallengeWidget-container {
+  background-color: white;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 320px;
+}
+
+.ChallengeWidget-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  margin-bottom: 16px;
+}
+
+.ChallengeWidget-iconContainer {
+  width: 50px;
+  height: 50px;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 16px;
+}
+
+.ChallengeWidget-icon {
+  color: #4CAF50;
+  font-size: 24px;
+}
+
+.ChallengeWidget-titleContainer {
+  flex: 1;
+}
+
+.ChallengeWidget-label {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.ChallengeWidget-points {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.ChallengeWidget-arrow {
+  color: #888;
+  margin-left: 8px;
+}
+
+.ChallengeWidget-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+}
+
+.ChallengeWidget-info {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 14px;
+}
+
+.ChallengeWidget-infoIcon {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.ChallengeWidget-button {
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.ChallengeWidget-button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Dark Mode Styles */
+.dark-mode .ChallengeWidget-container {
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .ChallengeWidget-iconContainer {
+  background-color: #333;
+}
+
+.dark-mode .ChallengeWidget-icon {
+  color: #5CCA60; /* Slightly brighter green for better visibility */
+}
+
+.dark-mode .ChallengeWidget-label {
+  color: #b0b0b0;
+}
+
+.dark-mode .ChallengeWidget-points {
+  color: #ffffff;
+}
+
+.dark-mode .ChallengeWidget-arrow {
+  color: #b0b0b0;
+}
+
+.dark-mode .ChallengeWidget-info {
+  color: #b0b0b0;
+}
+
+.dark-mode .ChallengeWidget-button {
+  background-color: #333;
+  color: #e0e0e0;
+}
+
+.dark-mode .ChallengeWidget-button:hover {
+  background-color: #444;
+}

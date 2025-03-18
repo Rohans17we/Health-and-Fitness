@@ -1,0 +1,158 @@
+.HealthBlog-article-card {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.HealthBlog-article-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.HealthBlog-article-number {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(135deg, #ff8f00 0%, #ff6b00 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.HealthBlog-article-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #333;
+  line-height: 1.3;
+  padding-right: 3rem;
+}
+
+.HealthBlog-article-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.2rem;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.HealthBlog-article-date,
+.HealthBlog-article-category {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.HealthBlog-article-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  color: #555;
+}
+
+.HealthBlog-article-points {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.2rem;
+}
+
+.HealthBlog-article-point {
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.HealthBlog-article-check {
+  color: #ff6b00;
+  margin-right: 0.7rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.HealthBlog-article-bonus,
+.HealthBlog-article-tip {
+  background-color: rgba(255, 107, 0, 0.1);
+  color: #ff6b00;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.95rem;
+}
+
+.HealthBlog-article-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ff6b00;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.HealthBlog-article-link:hover {
+  color: #e05a00;
+  text-decoration: underline;
+}
+
+/* Dark mode styles */
+.dark-mode .HealthBlog-article-card {
+  background-color: #1e1e1e;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .HealthBlog-article-title {
+  color: #f0f0f0;
+}
+
+.dark-mode .HealthBlog-article-meta {
+  color: #b0b0b0;
+}
+
+.dark-mode .HealthBlog-article-description,
+.dark-mode .HealthBlog-article-point {
+  color: #d0d0d0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .HealthBlog-article-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .HealthBlog-article-card {
+    padding: 1.5rem;
+  }
+  
+  .HealthBlog-article-number {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+    top: 1rem;
+    right: 1rem;
+  }
+  
+  .HealthBlog-article-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

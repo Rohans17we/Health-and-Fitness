@@ -1,0 +1,348 @@
+.SignUpForm-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f8f9fa;
+  margin-top: 80px; /* Add space for navbar */
+}
+
+.SignUpForm-wrapper {
+  background-color: white;
+  border-radius: 14px;
+  padding: 30px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin: 20px 0; /* Add vertical margin */
+}
+
+.SignUpForm-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.SignUpForm-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.SignUpForm-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.SignUpForm-stepTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.SignUpForm-optional {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #888;
+}
+
+.SignUpForm-step {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.SignUpForm-row {
+  display: flex;
+  gap: 15px;
+}
+
+.SignUpForm-row .SignUpForm-group {
+  flex: 1;
+}
+
+.SignUpForm-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.SignUpForm-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.SignUpForm-control {
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.SignUpForm-control:focus {
+  outline: none;
+  border-color: #ff6b00;
+}
+
+.SignUpForm-control.is-invalid {
+  border-color: #dc3545;
+}
+
+.SignUpForm-passwordField {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.SignUpForm-passwordToggle {
+  position: absolute;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SignUpForm-errorMessage {
+  color: #dc3545;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.SignUpForm-radioGroup {
+  display: flex;
+  gap: 20px;
+}
+
+.SignUpForm-radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.SignUpForm-checkboxGroup {
+  margin-top: 5px;
+}
+
+.SignUpForm-checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.SignUpForm-checkboxLabel span {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.SignUpForm-checkboxLabel a {
+  color: #ff6b00;
+  text-decoration: none;
+}
+
+.SignUpForm-checkboxLabel a:hover {
+  text-decoration: underline;
+}
+
+.SignUpForm-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.SignUpForm-backButton {
+  background: transparent;
+  color: #666;
+  border: 1px solid #ddd;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.SignUpForm-backButton:hover {
+  background: #f5f5f5;
+}
+
+.SignUpForm-nextButton, .SignUpForm-submitButton {
+  background: #ff6b00;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.SignUpForm-nextButton:hover, .SignUpForm-submitButton:hover {
+  background: #e65a00;
+  transform: scale(1.02);
+}
+
+.SignUpForm-nextButton:disabled, .SignUpForm-submitButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.SignUpForm-footer {
+  margin-top: 30px;
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.SignUpForm-loginLink {
+  color: #ff6b00;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.SignUpForm-loginLink:hover {
+  color: #e65a00;
+}
+
+/* Dark mode styles */
+.dark-mode .SignUpForm-container {
+  background-color: #1a1a1a;
+}
+
+.dark-mode .SignUpForm-wrapper {
+  background-color: #2c2c2e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .SignUpForm-title {
+  color: #ffffff;
+}
+
+.dark-mode .SignUpForm-subtitle {
+  color: #b0b0b0;
+}
+
+.dark-mode .SignUpForm-stepTitle {
+  color: #ffffff;
+}
+
+.dark-mode .SignUpForm-group label {
+  color: #e0e0e0;
+}
+
+.dark-mode .SignUpForm-control {
+  background-color: #3a3a3c;
+  border-color: #4a4a4c;
+  color: #ffffff;
+}
+
+.dark-mode .SignUpForm-control:focus {
+  border-color: #ff6b00;
+}
+
+.dark-mode .SignUpForm-passwordToggle {
+  color: #b0b0b0;
+}
+
+.dark-mode .SignUpForm-checkboxLabel span {
+  color: #e0e0e0;
+}
+
+.dark-mode .SignUpForm-backButton {
+  color: #e0e0e0;
+  border-color: #4a4a4c;
+}
+
+.dark-mode .SignUpForm-backButton:hover {
+  background: #3a3a3c;
+}
+
+.dark-mode .SignUpForm-footer {
+  color: #b0b0b0;
+}
+
+/* Adding responsive styles */
+@media screen and (max-width: 768px) {
+  .SignUpForm-wrapper {
+    top: 2vh;
+    padding: 20px;
+    max-width: 90%;
+  }
+  
+  .SignUpForm-title {
+    font-size: 1.7rem;
+  }
+  
+  .SignUpForm-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .SignUpForm-radioGroup {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .SignUpForm-buttons {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+  
+  .SignUpForm-backButton, 
+  .SignUpForm-nextButton, 
+  .SignUpForm-submitButton {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .SignUpForm-wrapper {
+    padding: 15px;
+    top: 1vh;
+  }
+  
+  .SignUpForm-title {
+    font-size: 1.5rem;
+  }
+  
+  .SignUpForm-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .SignUpForm-stepTitle {
+    font-size: 1.1rem;
+  }
+  
+  .SignUpForm-control {
+    padding: 10px 12px;
+  }
+}
+
+.SignUpForm-validationMessage {
+  color: #dc3545;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  text-align: center;
+  padding: 8px;
+  background-color: rgba(220, 53, 69, 0.1);
+  border-radius: 6px;
+  display: none;
+}
+
+.SignUpForm-validationMessage.visible {
+  display: block;
+}

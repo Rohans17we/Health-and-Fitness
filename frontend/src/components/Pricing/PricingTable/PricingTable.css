@@ -1,0 +1,241 @@
+/* Pricing Table Styles */
+.pricing-table-container {
+  margin-bottom: 4rem;
+}
+
+.pricing-table-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.pricing-table-title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff8f00, #ff6b00);
+  border-radius: 2px;
+}
+
+.pricing-table-wrapper {
+  overflow-x: auto;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 1rem;
+  color: #2a2a2a;
+}
+
+.pricing-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.pricing-table th,
+.pricing-table td {
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.pricing-table th {
+  background-color: #f8f9fa;
+  font-weight: 700;
+  color: #333;
+  position: sticky;
+  top: 0;
+}
+
+.pricing-table tr:last-child td {
+  border-bottom: none;
+}
+
+.pricing-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.pricing-table th:first-child,
+.pricing-table td:first-child {
+  font-weight: 600;
+  color: #444;
+  position: sticky;
+  left: 0;
+  background-color: #fff;
+  z-index: 1;
+}
+
+.pricing-table tr:hover td:first-child {
+  background-color: #f9f9f9;
+}
+
+.check-icon {
+  color: #4CAF50;
+}
+
+.times-icon {
+  color: #F44336;
+}
+
+/* Column Highlights */
+.pricing-table th:nth-child(3),
+.pricing-table td:nth-child(3) {
+  background-color: rgba(255, 143, 0, 0.05);
+}
+
+.pricing-table tr:hover td:nth-child(3) {
+  background-color: rgba(255, 143, 0, 0.08);
+}
+
+/* Price Row Highlight */
+.pricing-table tr:last-child {
+  background-color: #f8f9fa;
+  font-weight: 700;
+}
+
+.pricing-table tr:last-child td {
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.pricing-table tr:last-child td:nth-child(3) {
+  color: #ff8f00;
+}
+
+/* Dark Mode Styles */
+.dark-mode .pricing-table-title {
+  color: #f0f0f0;
+}
+
+.dark-mode .pricing-table-wrapper {
+  background-color: #1e1e1e;
+}
+
+.dark-mode .pricing-table th {
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+}
+
+.dark-mode .pricing-table td {
+  border-color: #333;
+  color: #e0e0e0;
+}
+
+.dark-mode .pricing-table th:first-child,
+.dark-mode .pricing-table td:first-child {
+  color: #e0e0e0;
+  background-color: #1e1e1e;
+}
+
+.dark-mode .pricing-table tr:hover {
+  background-color: #2a2a2a;
+}
+
+.dark-mode .pricing-table tr:hover td:first-child {
+  background-color: #2a2a2a;
+}
+
+.dark-mode .pricing-table th:nth-child(3),
+.dark-mode .pricing-table td:nth-child(3) {
+  background-color: rgba(255, 143, 0, 0.1);
+}
+
+.dark-mode .pricing-table tr:hover td:nth-child(3) {
+  background-color: rgba(255, 143, 0, 0.15);
+}
+
+.dark-mode .pricing-table tr:last-child {
+  background-color: #2a2a2a;
+}
+
+.dark-mode .pricing-table tr:last-child td {
+  color: #e0e0e0;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .pricing-table {
+    min-width: 700px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-table-title {
+    font-size: 1.8rem;
+  }
+  
+  .pricing-table {
+    min-width: 650px;
+  }
+  
+  .pricing-table-wrapper {
+    margin: 0 -1rem;
+    border-radius: 0.5rem;
+  }
+  
+  /* Add horizontal scroll indicator */
+  .pricing-table-container::after {
+    content: "← Swipe to view more →";
+    display: block;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing-table th,
+  .pricing-table td {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .pricing-table-title {
+    font-size: 1.6rem;
+    width: 100%;
+  }
+  
+  .pricing-table {
+    min-width: 500px;
+  }
+  
+  /* Improve touch scrolling */
+  .pricing-table-wrapper {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+  }
+  
+  /* Style scrollbar for webkit browsers */
+  .pricing-table-wrapper::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  .pricing-table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  .pricing-table-wrapper::-webkit-scrollbar-thumb {
+    background: #ff8f00;
+    border-radius: 10px;
+  }
+}
+
+/* Dark mode adjustments for responsive elements */
+.dark-mode .pricing-table-container::after {
+  color: #b0b0b0;
+}
+
+.dark-mode .pricing-table-wrapper::-webkit-scrollbar-track {
+  background: #2a2a2a;
+}

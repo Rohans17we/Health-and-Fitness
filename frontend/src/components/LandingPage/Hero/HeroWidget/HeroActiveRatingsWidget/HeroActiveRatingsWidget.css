@@ -1,0 +1,36 @@
+.HeroActiveRatingsWidget-container {
+  background-color: white;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.HeroActiveRatingsWidget-content {
+  display: flex;
+  align-items: center;
+}
+
+.HeroActiveRatingsWidget-star {
+  font-size: 24px;
+  color: #FF9500;
+  margin-right: 12px;
+}
+
+.HeroActiveRatingsWidget-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.HeroActiveRatingsWidget-rating {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.HeroActiveRatingsWidget-label {
+  font-size: 14px;
+  color: #666;
+}

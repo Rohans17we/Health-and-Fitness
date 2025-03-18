@@ -1,0 +1,149 @@
+.HealthBlog-container {
+  max-width: 100%;
+  margin: 10vh auto;
+  font-family: 'Inter', sans-serif;
+}
+
+.HealthBlog-hero {
+  background: linear-gradient(135deg, #ff8f00 0%, #ff6b00 100%);
+  color: white;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.HealthBlog-hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.HealthBlog-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.HealthBlog-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.HealthBlog-tagline {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.HealthBlog-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.HealthBlog-section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+.HealthBlog-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 4rem;
+  height: 0.25rem;
+  background: linear-gradient(90deg, #ff8f00, #ff6b00);
+  border-radius: 2px;
+}
+
+.HealthBlog-featured-section,
+.HealthBlog-articles-section {
+  margin-bottom: 4rem;
+}
+
+.HealthBlog-articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 2rem;
+}
+
+.HealthBlog-cta-section {
+  background-color: #f8f9fa;
+  border-radius: 1rem;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.HealthBlog-cta-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.HealthBlog-cta-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.HealthBlog-cta-text {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* Dark mode styles */
+.dark-mode .HealthBlog-container {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+.dark-mode .HealthBlog-cta-section {
+  background-color: #1e1e1e;
+}
+
+.dark-mode .HealthBlog-cta-title {
+  color: #f0f0f0;
+}
+
+.dark-mode .HealthBlog-cta-text {
+  color: #b0b0b0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .HealthBlog-title {
+    font-size: 2rem;
+  }
+  
+  .HealthBlog-description {
+    font-size: 1.1rem;
+  }
+  
+  .HealthBlog-articles-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .HealthBlog-hero {
+    padding: 4rem 1.5rem;
+  }
+  
+  .HealthBlog-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .HealthBlog-title {
+    font-size: 1.8rem;
+  }
+  
+  .HealthBlog-section-title {
+    font-size: 1.6rem;
+  }
+}

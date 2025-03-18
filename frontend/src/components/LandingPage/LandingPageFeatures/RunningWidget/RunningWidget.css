@@ -1,0 +1,142 @@
+.RunningWidget-container {
+  background-color: white;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 320px;
+  font-size: 0.9rem;
+}
+
+.RunningWidget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.RunningWidget-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.RunningWidget-icon {
+  color: #ff5252;
+  font-size: 18px;
+}
+
+.RunningWidget-menu {
+  color: #888;
+  cursor: pointer;
+}
+
+.RunningWidget-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.RunningWidget-stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: #333;
+  font-weight: 500;
+}
+
+.RunningWidget-challenge {
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.RunningWidget-challengeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #333;
+  font-size: 13px;
+}
+
+.RunningWidget-challengeArrow {
+  color: #888;
+  font-size: 12px;
+}
+
+.RunningWidget-progressContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.RunningWidget-progressBar {
+  height: 6px;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.RunningWidget-progress {
+  height: 100%;
+  background-color: #ff5252;
+  border-radius: 3px;
+}
+
+.RunningWidget-values {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666;
+}
+
+/* Dark Mode Styles */
+.dark-mode .RunningWidget-container {
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .RunningWidget-title {
+  color: #e0e0e0;
+}
+
+.dark-mode .RunningWidget-icon {
+  color: #ff6b6b; /* Slightly brighter red for dark mode */
+}
+
+.dark-mode .RunningWidget-menu {
+  color: #aaa;
+}
+
+.dark-mode .RunningWidget-stat {
+  color: #e0e0e0;
+}
+
+.dark-mode .RunningWidget-challenge {
+  background-color: #2a2a2a;
+}
+
+.dark-mode .RunningWidget-challengeHeader {
+  color: #e0e0e0;
+}
+
+.dark-mode .RunningWidget-challengeArrow {
+  color: #aaa;
+}
+
+.dark-mode .RunningWidget-progressBar {
+  background-color: #444;
+}
+
+.dark-mode .RunningWidget-progress {
+  background-color: #ff6b6b;
+}
+
+.dark-mode .RunningWidget-values {
+  color: #aaa;
+}

@@ -1,0 +1,54 @@
+/* Feature Hero Section */
+.feature-hero {
+  background: linear-gradient(135deg, #ff8f00 0%, #ff6b00 100%);
+  color: white;
+  padding: 140px 40px 80px;
+  text-align: center;
+}
+
+.feature-hero-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.feature-hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.feature-hero-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .feature-hero {
+    padding: 120px 30px 60px;
+  }
+  
+  .feature-hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .feature-hero-description {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .feature-hero {
+    padding: 100px 20px 50px;
+  }
+  
+  .feature-hero-title {
+    font-size: 2rem;
+  }
+  
+  .feature-hero-description {
+    font-size: 1rem;
+  }
+}

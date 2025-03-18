@@ -1,0 +1,186 @@
+.LandingPageFeatures-section {
+  padding: 80px 0;
+  background-color: #fff;
+}
+
+.LandingPageFeatures-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.LandingPageFeatures-heading {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.LandingPageFeatures-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.LandingPageFeatures-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Fixed layout for cards - always side by side */
+.LandingPageFeatures-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 60px;
+}
+@media (max-width: 960px) {
+  .LandingPageFeatures-cards {
+    flex-direction: column;
+  }
+}
+
+.LandingPageFeatures-card {
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  padding: 30px;
+  flex: 1;
+  max-width: 350px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.LandingPageFeatures-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.LandingPageFeatures-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.LandingPageFeatures-icon-interactive {
+  background-color: #e6f7f2;
+  color: #38b2ac;
+}
+
+.LandingPageFeatures-icon-goal {
+  background-color: #e9e7fd;
+  color: #6366f1;
+}
+
+.LandingPageFeatures-icon-progress {
+  background-color: #feebc8;
+  color: #ed8936;
+}
+
+.LandingPageFeatures-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.LandingPageFeatures-description {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Hub section styling to match the image */
+.LandingPageFeatures-hub-section {
+  padding: .5rem;
+  border-top: 1px solid #eee;
+}
+
+.LandingPageFeatures-hub-container {
+  display: flex;
+  padding: .3rem;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+}
+@media (max-width: 960px) {
+  .LandingPageFeatures-hub-container {
+   flex-direction: column;
+  }
+}
+
+
+.LandingPageFeatures-hub-content {
+  flex: 1;
+  max-width: 50%;
+  padding: 1.5rem;
+}
+
+.LandingPageFeatures-hub-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  color: #333;
+}
+
+.LandingPageFeatures-hub-description {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  max-width: 600px;
+}
+
+.LandingPageFeatures-hub-features {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.LandingPageFeatures-hub-feature {
+  flex: 1;
+}
+
+.LandingPageFeatures-hub-feature-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 15px;
+  color: #f97316;
+}
+
+.LandingPageFeatures-hub-feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.LandingPageFeatures-hub-feature-description {
+  color: #666;
+  line-height: 1.6;
+}
+
+.LandingPageFeatures-hub-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 60vh;
+  overflow: hidden;
+}
+
+.LandingPageFeatures-hub-image-iphone{
+  position: relative;
+  top: 25vh;
+}
+
+/* Add a border line between features */
+.LandingPageFeatures-hub-divider {
+  border-top: 1px solid #eee;
+  margin: 20px 0;
+  width: 100%;
+}

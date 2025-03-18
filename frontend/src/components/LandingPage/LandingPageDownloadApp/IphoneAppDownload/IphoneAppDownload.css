@@ -1,0 +1,288 @@
+.IphoneAppDownload-container {
+  height: 100%;
+  background-color: #f2f2f7;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  padding: 10px;
+  overflow-y: auto;
+  border-radius: 12px;
+}
+
+.IphoneAppDownload-header {
+  padding: 5px 0 15px;
+}
+
+.IphoneAppDownload-back {
+  display: flex;
+  align-items: center;
+  color: #007aff;
+  font-size: 16px;
+}
+
+.IphoneAppDownload-back-arrow {
+  font-size: 24px;
+  margin-right: 2px;
+}
+
+/* App section */
+.IphoneAppDownload-app {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 5px;
+}
+
+.IphoneAppDownload-app-icon {
+  width: 80px;
+  height: 80px;
+  background-color: #ff7846;
+  border-radius: 20px;
+  margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.IphoneAppDownload-app-icon-inner {
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.IphoneAppDownload-app-info {
+  flex: 1;
+}
+
+.IphoneAppDownload-app-name {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 2px;
+  color: #1d1d1f;
+}
+
+.IphoneAppDownload-app-category {
+  font-size: 14px;
+  color: #86868b;
+  margin: 0 0 8px;
+}
+
+.IphoneAppDownload-app-button {
+  background-color: #007aff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.IphoneAppDownload-app-share {
+  color: #007aff;
+  padding: 10px;
+}
+
+/* Details section */
+.IphoneAppDownload-details {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #e5e5ea;
+  border-bottom: 1px solid #e5e5ea;
+  padding: 15px 0;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 12px;
+  margin: 0 -5px 20px;
+  padding: 15px 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.IphoneAppDownload-detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.IphoneAppDownload-detail-value {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #1d1d1f;
+}
+
+.IphoneAppDownload-detail-stars {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.IphoneAppDownload-star-icon {
+  color: #ffa534;
+  font-size: 14px;
+  margin: 0 1px;
+}
+
+.IphoneAppDownload-detail-label, 
+.IphoneAppDownload-detail-sublabel {
+  font-size: 10px;
+  color: #86868b;
+}
+
+.IphoneAppDownload-detail-label {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.IphoneAppDownload-detail-icon {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #86868b;
+}
+
+/* Star styles - consolidated */
+.IphoneAppDownload-star {
+  color: #e5e5ea;
+  font-size: 12px;
+}
+
+.IphoneAppDownload-star.filled {
+  color: #ffa534;
+}
+
+.IphoneAppDownload-star.half-filled {
+  background: linear-gradient(90deg, #ffa534 50%, #e5e5ea 50%);
+  -webkit-text-fill-color: transparent;
+}
+
+/* Preview section */
+.IphoneAppDownload-preview {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding-bottom: 10px;
+  margin: 0 -5px;
+  padding: 0 5px 10px;
+  scrollbar-width: none;
+}
+
+.IphoneAppDownload-preview::-webkit-scrollbar {
+  display: none;
+}
+
+.IphoneAppDownload-preview-item {
+  flex: 0 0 auto;
+  width: 150px;
+  height: 300px;
+  background-color: #f8f8f8;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e5ea;
+}
+
+.IphoneAppDownload-preview-screen {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background-color: white;
+}
+
+.IphoneAppDownload-preview-time {
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #86868b;
+}
+
+.IphoneAppDownload-preview-greeting {
+  padding: 10px;
+}
+
+.IphoneAppDownload-preview-hello {
+  font-size: 12px;
+  color: #86868b;
+}
+
+.IphoneAppDownload-preview-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+/* Dark Mode Styles */
+.dark-mode .IphoneAppDownload-container {
+  background-color: #1a1a1a;
+}
+
+.dark-mode .IphoneAppDownload-back {
+  color: #0a84ff;
+}
+
+.dark-mode .IphoneAppDownload-app-icon {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .IphoneAppDownload-app-name {
+  color: #ffffff;
+}
+
+.dark-mode .IphoneAppDownload-app-category {
+  color: #a8a8a8;
+}
+
+.dark-mode .IphoneAppDownload-app-button {
+  background-color: #0a84ff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .IphoneAppDownload-app-share {
+  color: #0a84ff;
+}
+
+.dark-mode .IphoneAppDownload-details {
+  background-color: #2c2c2e;
+  border-color: #3a3a3c;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .IphoneAppDownload-detail-value {
+  color: #ffffff;
+}
+
+.dark-mode .IphoneAppDownload-detail-label,
+.dark-mode .IphoneAppDownload-detail-sublabel {
+  color: #a8a8a8;
+}
+
+.dark-mode .IphoneAppDownload-detail-icon {
+  color: #a8a8a8;
+}
+
+.dark-mode .IphoneAppDownload-star {
+  color: #3a3a3c;
+}
+
+.dark-mode .IphoneAppDownload-preview-item {
+  background-color: #2c2c2e;
+  border-color: #3a3a3c;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .IphoneAppDownload-preview-screen {
+  background-color: #2c2c2e;
+}
+
+.dark-mode .IphoneAppDownload-preview-time {
+  color: #a8a8a8;
+}
+
+.dark-mode .IphoneAppDownload-preview-hello {
+  color: #a8a8a8;
+}
+
+.dark-mode .IphoneAppDownload-preview-name {
+  color: #ffffff;
+}

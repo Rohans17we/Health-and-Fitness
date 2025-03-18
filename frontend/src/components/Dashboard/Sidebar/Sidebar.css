@@ -1,0 +1,247 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  height: 100vh;
+  background-color: white;
+  border-right: 1px solid #eee;
+  transition: width 0.3s ease;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.sidebar-logo {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #ff8f00;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.sidebar-toggle:hover {
+  color: #ff6b00;
+}
+
+.sidebar-menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  overflow-y: auto;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  color: #666;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.sidebar-item:hover {
+  background-color: #f8f9fa;
+  color: #ff8f00;
+}
+
+.sidebar-item.active {
+  background-color: rgba(255, 143, 0, 0.1);
+  color: #ff8f00;
+  border-left: 3px solid #ff8f00;
+}
+
+.sidebar-icon {
+  font-size: 1.2rem;
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-text {
+  margin-left: 1rem;
+  white-space: nowrap;
+}
+
+.sidebar-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sidebar-user-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+}
+
+.sidebar-user-info {
+  margin-left: 0.8rem;
+  overflow: hidden;
+}
+
+.sidebar-user-name {
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user-email {
+  font-size: 0.8rem;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-action-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  color: #666;
+  text-decoration: none;
+  border-radius: 0.3rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1rem;
+}
+
+.sidebar-action-item:hover {
+  background-color: #f8f9fa;
+  color: #ff8f00;
+}
+
+.sidebar-action-item span {
+  margin-left: 0.8rem;
+}
+
+/* Dark Mode Styles */
+.dark-mode .sidebar {
+  background-color: #1e1e1e;
+  border-right-color: #333;
+}
+
+.dark-mode .sidebar-header {
+  border-bottom-color: #333;
+}
+
+.dark-mode .sidebar-logo {
+  color: #ff8f00;
+}
+
+.dark-mode .sidebar-toggle {
+  color: #b0b0b0;
+}
+
+.dark-mode .sidebar-toggle:hover {
+  color: #ff8f00;
+}
+
+.dark-mode .sidebar-item {
+  color: #b0b0b0;
+}
+
+.dark-mode .sidebar-item:hover {
+  background-color: #2a2a2a;
+  color: #ff8f00;
+}
+
+.dark-mode .sidebar-item.active {
+  background-color: rgba(255, 143, 0, 0.15);
+}
+
+.dark-mode .sidebar-footer {
+  border-top-color: #333;
+}
+
+.dark-mode .sidebar-user-icon {
+  background-color: #333;
+  color: #b0b0b0;
+}
+
+.dark-mode .sidebar-user-name {
+  color: #f0f0f0;
+}
+
+.dark-mode .sidebar-user-email {
+  color: #b0b0b0;
+}
+
+.dark-mode .sidebar-action-item {
+  color: #b0b0b0;
+}
+
+.dark-mode .sidebar-action-item:hover {
+  background-color: #2a2a2a;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    display: none;
+  }
+  
+  .sidebar-overlay.active {
+    display: block;
+  }
+}
