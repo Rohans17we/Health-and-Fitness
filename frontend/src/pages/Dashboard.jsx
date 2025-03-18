@@ -63,25 +63,26 @@ const Dashboard = () => {
   }
 
   return (
-    < div className="Dashboard-container">
-    <div className={`dashboard-layout ${sidebarOpen ? "sidebar-open" : "sidebar-collapsed"}`}>
-      {isMobile && sidebarOpen && (
-        <div className="sidebar-overlay" onClick={toggleSidebar}></div>
-      )}
+    <div className="Dashboard-container">
+      <div className={`dashboard-layout ${sidebarOpen ? "sidebar-open" : "sidebar-collapsed"}`}>
+        {isMobile && sidebarOpen && (
+          <div className="sidebar-overlay" onClick={toggleSidebar}></div>
+        )}
+        
+
+        
+        <Sidebar user={user} isOpen={sidebarOpen} onClose={toggleSidebar} />
+        
+        {isMobile && !sidebarOpen && (
+          <button className="mobile-sidebar-toggle" onClick={toggleSidebar}>
+            <FaBars />
+          </button>
+        )}
       
-      <Sidebar user={user} isOpen={sidebarOpen} />
-      
-      {isMobile && !sidebarOpen && (
-        <button className="mobile-sidebar-toggle" onClick={toggleSidebar}>
-          <FaBars />
-        </button>
-      )}
-    </div>
-      
-      <div className="Dashboard-right-side">
-        <DashboardHome/>
+        <div className="Dashboard-right-side">
+          <DashboardHome/>
+        </div>
       </div>
-    
     </div>
   );
 };

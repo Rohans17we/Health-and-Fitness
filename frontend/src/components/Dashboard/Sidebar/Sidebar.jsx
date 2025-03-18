@@ -16,10 +16,17 @@ import {
 } from "react-icons/fa";
 import "./Sidebar.css";
 
-const Sidebar = ({ user, isOpen }) => {
+const Sidebar = ({ user, isOpen, onClose }) => {
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
   const isMobile = window.innerWidth <= 768;
+
+  // Add this function to handle sidebar close
+  const handleClose = () => {
+    if (onClose) {
+      onClose();
+    }
+  };
 
   const menuItems = [
     { name: "Dashboard", icon: <FaTachometerAlt />, path: "/dashboard" },
@@ -43,7 +50,7 @@ const Sidebar = ({ user, isOpen }) => {
           {collapsed && !isMobile ? "NH" : "NuHealth"}
         </div>
         {isMobile ? (
-          <button className="sidebar-close">
+          <button className="sidebar-close" onClick={handleClose}>
             <FaTimes />
           </button>
         ) : (

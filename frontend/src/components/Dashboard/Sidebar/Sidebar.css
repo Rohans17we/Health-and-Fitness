@@ -245,3 +245,28 @@
     display: block;
   }
 }
+
+
+.sidebar-close {
+  background: #ff6b00;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.sidebar-close:hover {
+  background: #ff8f00;
+  transform: scale(1.1);
+}
+
+.sidebar-close svg {
+  font-size: 18px;
+}

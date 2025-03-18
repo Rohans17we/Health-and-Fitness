@@ -1,282 +1,162 @@
-.dashboard-container {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 2rem;
-  display: flex;
-}
-
-.dashboard-loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-size: 1.2rem;
-  color: #666;
-}
-
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-/* Dark Mode Styles */
-.dark-mode .dashboard-loading {
-  color: #b0b0b0;
-}
-
-/* Responsive Styles */
-@media (max-width: 992px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .dashboard-container {
-    padding: 0 1rem;
-    margin: 1rem auto;
-  }
-}
-
-/* Add this to your existing Dashboard.css */
-
-/* Responsive Dashboard Layout */
-@media (max-width: 768px) {
-  .dashboard-main {
-    margin-left: 0;
-  }
-  
-  .sidebar-collapsed .dashboard-main {
-    margin-left: 0;
-  }
-  
-  .dashboard-content {
-    padding: 1rem;
-  }
-  
-  /* Mobile sidebar toggle button */
-  .mobile-sidebar-toggle {
-    display: flex;
-    position: fixed;
-    bottom: 1.5rem;
-    left: 1.5rem;
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #ff8f00 0%, #ff6b00 100%);
-    color: white;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    z-index: 90;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .mobile-sidebar-toggle:hover {
-    transform: scale(1.05);
-  }
-  
-  .dark-mode .mobile-sidebar-toggle {
-    background: linear-gradient(135deg, #ff8f00 0%, #ff6b00 100%);
-  }
-}
-
-/* Dashboard Content Transitions */
-.dashboard-fade-enter {
-  opacity: 0;
-}
-
-.dashboard-fade-enter-active {
-  opacity: 1;
-  transition: opacity 300ms;
-}
-
-.dashboard-fade-exit {
-  opacity: 1;
-}
-
-.dashboard-fade-exit-active {
-  opacity: 0;
-  transition: opacity 300ms;
-}
-
-.dashboard-content-container {
-  background-color: white;
-  border-radius: 1rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  padding: 2rem;
-  margin-bottom: 2rem;
-}
-
-.dashboard-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.dashboard-loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-size: 1.2rem;
-  color: #666;
-}
-
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-/* Dark Mode Styles */
-.dark-mode .dashboard-content-container {
-  background-color: #1e1e1e;
-  color: #f0f0f0;
-}
-
-.dark-mode .dashboard-loading {
-  color: #b0b0b0;
-}
-
-/* Responsive Styles */
-@media (max-width: 992px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .dashboard-container {
-    padding: 0 1rem;
-    margin: 1rem auto;
-  }
-}
-
-/* Add this to your existing Dashboard.css */
-
-/* Form Styles */
-.form-group {
-  margin-bottom: 1.2rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #444;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
+/* Dashboard Container */
+.Dashboard-container {
   width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  transition: border-color 0.3s;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: #ff8f00;
-  box-shadow: 0 0 0 2px rgba(255, 143, 0, 0.1);
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.form-buttons {
+  height: 100vh;
+  overflow: hidden;
   display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  background-color: #f8f9fa;
 }
 
-.btn-cancel {
-  padding: 0.8rem 1.5rem;
-  background: none;
-  border: 1px solid #ddd;
-  border-radius: 0.5rem;
-  color: #666;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+/* Dashboard Layout */
+.dashboard-layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-.btn-cancel:hover {
-  background-color: #f5f5f5;
+/* Right Side Content Area */
+.Dashboard-right-side {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  padding-top: 1.5rem;
+  width: 100%;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+  background-color: #ff8f00;
+  align-items: flex-start;
+  justify-content: flex-start;
+  display: flex;
+}
+
+/* Sidebar States */
+.sidebar-open .Dashboard-right-side {
+  margin-left: 250px;
+}
+
+.sidebar-collapsed .Dashboard-right-side {
+  margin-left: 70px !important;
+}
+
+/* Loading State */
+.dashboard-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  font-size: 1.2rem;
   color: #333;
+  background-color: #f8f9fa;
 }
 
-.btn-submit {
-  padding: 0.8rem 1.5rem;
-  background: linear-gradient(135deg, #ff8f00 0%, #ff6b00 100%);
-  color: white;
+.dashboard-loading::after {
+  content: "";
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #ff8f00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Mobile Sidebar Toggle Button */
+.mobile-sidebar-toggle {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 100;
+  background: #ffffff;
   border: none;
-  border-radius: 0.5rem;
-  font-weight: 600;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
 }
 
-.btn-submit:hover {
-  background: linear-gradient(135deg, #ff6b00 0%, #ff8f00 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+.mobile-sidebar-toggle:hover {
+  background: #f8f8f8;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Dark Mode Form Styles */
-.dark-mode .form-group label {
-  color: #e0e0e0;
+.mobile-sidebar-toggle svg {
+  font-size: 22px;
+  color: #ff8f00;
 }
 
-.dark-mode .form-group input,
-.dark-mode .form-group select,
-.dark-mode .form-group textarea {
-  background-color: #2a2a2a;
-  border-color: #444;
-  color: #e0e0e0;
+/* Overlay for Mobile */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+  backdrop-filter: blur(2px);
 }
 
-.dark-mode .form-group input:focus,
-.dark-mode .form-group select:focus,
-.dark-mode .form-group textarea:focus {
-  border-color: #ff8f00;
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .sidebar-open .Dashboard-right-side {
+    margin-left: 0;
+  }
+  
+  .Dashboard-right-side {
+    width: 100%;
+    padding: 15px;
+    padding-top: 60px; /* Add space for the fixed toggle button */
+  }
+  
+  /* Make sure the sidebar toggle is always visible on mobile */
+  .mobile-sidebar-toggle {
+    display: flex !important;
+    z-index: 101;
+  }
 }
 
-.dark-mode .btn-cancel {
-  border-color: #444;
-  color: #b0b0b0;
-}
-
-.dark-mode .btn-cancel:hover {
-  background-color: #2a2a2a;
+/* Dark Mode Styles */
+.dark-mode .Dashboard-container,
+.dark-mode .Dashboard-right-side {
+  background-color: #1a1a1a;
   color: #f0f0f0;
 }
 
-/* Responsive Form Styles */
-@media (max-width: 480px) {
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-  
-  .form-buttons {
-    flex-direction: column-reverse;
-    gap: 0.8rem;
-  }
-  
-  .btn-cancel, .btn-submit {
-    width: 100%;
-  }
+.dark-mode .dashboard-loading {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
+.dark-mode .dashboard-loading::after {
+  border: 4px solid #333;
+  border-top: 4px solid #ff8f00;
+}
+
+.dark-mode .mobile-sidebar-toggle {
+  background: #2a2a2a;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .mobile-sidebar-toggle:hover {
+  background: #333;
+}
+
+.dark-mode .mobile-sidebar-toggle svg {
+  color: #ff8f00;
+}
+
+.dark-mode .sidebar-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
 }
