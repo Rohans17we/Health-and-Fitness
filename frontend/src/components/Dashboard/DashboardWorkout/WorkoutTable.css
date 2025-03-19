@@ -1,0 +1,92 @@
+.workout-table-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.workout-table-container h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.workout-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.workout-table th,
+.workout-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.workout-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+.workout-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.intensity-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.intensity-badge.low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.intensity-badge.medium {
+  background-color: #fff8e1;
+  color: #ff8f00;
+}
+
+.intensity-badge.high {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.delete-btn {
+  background-color: transparent;
+  color: #f44336;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #ffebee;
+}
+
+.no-workouts {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #666;
+}
+
+.no-workouts p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
