@@ -1,0 +1,288 @@
+/* Main container styles */
+.analytics-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  transition: background-color 0.3s ease;
+}
+
+/* Heading styles */
+.analytics-container h1 {
+  color: var(--heading-color, #333);
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+/* Loading and error states */
+.analytics-loading, .analytics-error {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.analytics-error {
+  color: #e53935;
+}
+
+/* Layout for summary and details sections */
+.analytics-summary, .analytics-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* Card styles */
+.analytics-card {
+  background-color: var(--card-bg, #fff);
+  color: var(--text-color, #333);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  flex: 1;
+  min-width: 300px;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.analytics-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.analytics-card h3 {
+  margin-top: 0;
+  margin-bottom: 18px;
+  color: var(--heading-color, #333);
+  border-bottom: 1px solid var(--border-color, #eee);
+  padding-bottom: 12px;
+  font-size: 20px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Stat item styles */
+.analytics-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 8px 0;
+  color: var(--text-color, #333);
+  transition: color 0.3s ease;
+}
+
+.stat-value {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.stat-value.positive {
+  color: var(--positive-color, #4caf50);
+}
+
+.stat-value.negative {
+  color: var(--negative-color, #f44336);
+}
+
+/* Workout types list */
+.workout-types-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.workout-types-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color, #f0f0f0);
+  transition: border-color 0.3s ease;
+}
+
+.workout-types-list li:last-child {
+  border-bottom: none;
+}
+
+/* Simple bar chart styles */
+.calorie-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 180px;
+  margin-top: 20px;
+  padding: 0 10px;
+}
+
+.chart-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.chart-bar {
+  width: 30px;
+  background-color: var(--chart-bar-color, #4caf50);
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease, background-color 0.3s ease;
+}
+
+.chart-label {
+  margin-top: 8px;
+  font-size: 12px;
+  text-align: center;
+  color: var(--text-color, #333);
+  transition: color 0.3s ease;
+}
+
+/* No data message */
+.no-data-message {
+  background-color: var(--card-bg, #f5f5f5);
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  margin: 40px auto;
+  max-width: 600px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.no-data-message p {
+  font-size: 18px;
+  color: var(--text-color, #666);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+/* Recharts container styles */
+.chart-card {
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.chart-container {
+  height: 300px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+/* Dark mode styles */
+body.dark-mode .analytics-container {
+  background-color: var(--bg-color, #1a1a1a);
+}
+
+body.dark-mode .analytics-container h1 {
+  color: #ffffff;
+}
+
+body.dark-mode .analytics-card {
+  --card-bg: #2d2d2d;
+  --text-color: #e0e0e0;
+  --heading-color: #ffffff;
+  --border-color: #444;
+  --positive-color: #81c784;
+  --negative-color: #e57373;
+  --chart-bar-color: #81c784;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .no-data-message {
+  --card-bg: #2d2d2d;
+  --text-color: #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .analytics-loading, 
+body.dark-mode .analytics-error {
+  color: #e0e0e0;
+}
+
+/* Dark mode styles for Recharts */
+body.dark-mode .recharts-cartesian-grid-horizontal line,
+body.dark-mode .recharts-cartesian-grid-vertical line {
+  stroke: #444;
+}
+
+body.dark-mode .recharts-text {
+  fill: #e0e0e0;
+}
+
+body.dark-mode .recharts-tooltip-wrapper .recharts-default-tooltip {
+  background-color: #333 !important;
+  border-color: #555 !important;
+}
+
+body.dark-mode .recharts-tooltip-wrapper .recharts-default-tooltip .recharts-tooltip-label,
+body.dark-mode .recharts-tooltip-wrapper .recharts-default-tooltip .recharts-tooltip-item {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .recharts-legend-item-text {
+  color: #e0e0e0 !important;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .analytics-container {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  .analytics-card {
+    min-width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .analytics-summary, 
+  .analytics-details {
+    flex-direction: column;
+  }
+  
+  .analytics-card {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .analytics-container h1 {
+    font-size: 24px;
+  }
+  
+  .calorie-chart {
+    height: 150px;
+  }
+  
+  .chart-bar {
+    width: 20px;
+  }
+  
+  .chart-container {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .analytics-container {
+    padding: 10px;
+  }
+  
+  .analytics-card {
+    padding: 15px;
+  }
+  
+  .analytics-card h3 {
+    font-size: 18px;
+  }
+  
+  .chart-container {
+    height: 200px;
+  }
+  
+  .no-data-message {
+    padding: 25px;
+  }
+}

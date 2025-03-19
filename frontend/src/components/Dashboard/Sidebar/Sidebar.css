@@ -30,20 +30,77 @@
   color: #ff8f00;
 }
 
+/* Update the sidebar toggle button styles */
 .sidebar-toggle {
-  background: none;
+  position: absolute;
+  right: -12px;
+  top: 20px;
+  background-color: #ff8f00;
+  color: white;
   border: none;
-  font-size: 1.5rem;
-  color: #666;
-  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 11;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .sidebar-toggle {
+  background-color: #444;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 .sidebar-toggle:hover {
-  color: #ff6b00;
+  background-color: #e68200;
+  transform: scale(1.1);
+}
+
+body.dark-mode .sidebar-toggle:hover {
+  background-color: #555;
+}
+
+/* Close button for mobile view */
+.sidebar-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: transparent;
+  border: none;
+  color: #666;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+  z-index: 11;
+}
+
+body.dark-mode .sidebar-close {
+  color: #aaa;
+}
+
+/* Media query to handle button visibility */
+@media (max-width: 768px) {
+  .sidebar-toggle {
+    display: none; /* Hide the collapse toggle on mobile */
+  }
+  
+  .sidebar-close {
+    display: block; /* Show the X close button on mobile */
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebar-toggle {
+    display: flex; /* Show the collapse toggle on desktop */
+  }
+  
+  .sidebar-close {
+    display: none; /* Hide the X close button on desktop */
+  }
 }
 
 .sidebar-menu {

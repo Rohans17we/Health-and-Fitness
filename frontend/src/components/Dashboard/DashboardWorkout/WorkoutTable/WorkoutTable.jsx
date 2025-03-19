@@ -24,11 +24,11 @@ const WorkoutTable = ({ workouts, onDelete }) => {
           <thead>
             <tr>
               <th>Date</th>
-              <th>Exercise Type</th>
+              <th>Exercise</th>
               <th>Duration</th>
               <th>Sets</th>
               <th>Reps</th>
-              <th>Calories</th>
+              <th>Cal</th>
               <th>Intensity</th>
               <th>Actions</th>
             </tr>
@@ -38,7 +38,7 @@ const WorkoutTable = ({ workouts, onDelete }) => {
               <tr key={workout.id}>
                 <td>{formatDate(workout.date)}</td>
                 <td>{workout.exerciseType}</td>
-                <td>{workout.duration} min</td>
+                <td>{workout.duration}m</td>
                 <td>{workout.sets}</td>
                 <td>{workout.reps}</td>
                 <td>{workout.caloriesBurned}</td>

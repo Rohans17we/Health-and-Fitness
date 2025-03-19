@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './DashboardWorkout.css';
-import WorkoutForm from './WorkoutForm';
-import WorkoutTable from './WorkoutTable';
+import WorkoutForm from './WorkoutForm/WorkoutForm';
+import WorkoutTable from './WorkoutTable/WorkoutTable';
 
 const DashboardWorkout = () => {
   const [workouts, setWorkouts] = useState([]);

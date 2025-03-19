@@ -94,7 +94,6 @@ const DashboardHome = ({ user }) => {
   // Merge the basic user data with the profile data
   const mergedUserData = { ...user, ...userProfile };
 
-  // Default values for user data if not available
   const userData = {
     firstName: mergedUserData.firstName || 'User',
     lastName: mergedUserData.lastName || '',

@@ -1,0 +1,191 @@
+.workout-table-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .workout-table-container {
+  background-color: #222;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.workout-table-container h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+body.dark-mode .workout-table-container h2 {
+  color: #f0f0f0;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.workout-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.workout-table th,
+.workout-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+body.dark-mode .workout-table th,
+body.dark-mode .workout-table td {
+  border-bottom: 1px solid #444;
+  color: #e0e0e0;
+}
+
+.workout-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+body.dark-mode .workout-table th {
+  background-color: #333;
+  color: #e0e0e0;
+}
+
+.workout-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+body.dark-mode .workout-table tr:hover {
+  background-color: #3a3a3a;
+}
+
+.intensity-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.intensity-badge.low {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.intensity-badge.medium {
+  background-color: #fff8e1;
+  color: #ff8f00;
+}
+
+.intensity-badge.high {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+body.dark-mode .intensity-badge.low {
+  background-color: rgba(46, 125, 50, 0.2);
+  color: #81c784;
+}
+
+body.dark-mode .intensity-badge.medium {
+  background-color: rgba(255, 143, 0, 0.2);
+  color: #ffb74d;
+}
+
+body.dark-mode .intensity-badge.high {
+  background-color: rgba(198, 40, 40, 0.2);
+  color: #ef5350;
+}
+
+.delete-btn {
+  background-color: transparent;
+  color: #f44336;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #ffebee;
+}
+
+body.dark-mode .delete-btn {
+  color: #ef5350;
+}
+
+body.dark-mode .delete-btn:hover {
+  background-color: rgba(244, 67, 54, 0.2);
+}
+
+.no-workouts {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #666;
+}
+
+body.dark-mode .no-workouts {
+  background-color: #222;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: #aaa;
+}
+
+.no-workouts p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .workout-table-container {
+    padding: 15px;
+  }
+  
+  .workout-table th,
+  .workout-table td {
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .workout-table {
+    min-width: 550px;
+  }
+  
+  .intensity-badge {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .workout-table-container h2 {
+    font-size: 1.2rem;
+  }
+  
+  .workout-table th,
+  .workout-table td {
+    padding: 6px 8px;
+    font-size: 0.75rem;
+  }
+  
+  .workout-table {
+    min-width: 500px;
+  }
+  
+  .intensity-badge {
+    padding: 2px 4px;
+    font-size: 9px;
+  }
+}

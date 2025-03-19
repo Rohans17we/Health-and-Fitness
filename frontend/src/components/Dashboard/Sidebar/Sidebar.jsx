@@ -1,5 +1,5 @@
 // Update the Sidebar component to accept isOpen prop
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { 
   FaTachometerAlt, 
@@ -16,15 +16,43 @@ import {
 } from "react-icons/fa";
 import "./Sidebar.css";
 
-const Sidebar = ({ user, isOpen, onClose }) => {
+const Sidebar = ({ user, isOpen, onClose, onCollapse, collapsed: propCollapsed }) => {
   const location = useLocation();
-  const [collapsed, setCollapsed] = useState(false);
-  const isMobile = window.innerWidth <= 768;
+  const [collapsed, setCollapsed] = useState(propCollapsed || false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  
+  // Update window width on resize
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  // Sync with prop value when it changes
+  useEffect(() => {
+    if (propCollapsed !== undefined) {
+      setCollapsed(propCollapsed);
+    }
+  }, [propCollapsed]);
+
+  const isMobile = windowWidth <= 768;
 
   // Add this function to handle sidebar close
   const handleClose = () => {
     if (onClose) {
       onClose();
+    }
+  };
+  
+  // Define the toggle function properly
+  const handleToggle = () => {
+    const newCollapsedState = !collapsed;
+    setCollapsed(newCollapsedState);
+    if (onCollapse) {
+      onCollapse(newCollapsedState);
     }
   };
 
@@ -56,7 +84,7 @@ const Sidebar = ({ user, isOpen, onClose }) => {
         ) : (
           <button 
             className="sidebar-toggle" 
-            onClick={() => setCollapsed(!collapsed)}
+            onClick={handleToggle}
           >
             {collapsed ? ">" : "<"}
           </button>

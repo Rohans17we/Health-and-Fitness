@@ -67,7 +67,37 @@ namespace Backend.Controllers
             });
         }
 
-        // ✅ GET LOGGED-IN USER INFO (Using Email Claim Only)
+        [Authorize]
+        [HttpGet("current")]
+        public async Task<IActionResult> GetCurrentUser()
+            {
+                try
+                {
+                    var emailClaim = User.FindFirst(ClaimTypes.Email);
+                    if (emailClaim == null)
+                        return Unauthorized(new { message = "Invalid token. Please log in again." });
+
+                    string email = emailClaim.Value;
+                    var user = await _context.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower());
+
+                    if (user == null)
+                        return NotFound(new { message = "User not found. Please log in again." });
+
+                    return Ok(new
+                    {
+                        id = user.Id,
+                        firstName = user.FirstName,
+                        lastName = user.LastName,
+                        email = user.Email
+                    });
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(500, new { message = "Internal server error", error = ex.Message });
+                }
+            }
+
+
         // ✅ GET LOGGED-IN USER INFO (Using Email Claim Only)
         [Authorize]
         [HttpGet("profile")]

@@ -1,10 +1,15 @@
 /* Dashboard Container */
-.Dashboard-container {
+.dashboard-container {
   width: 100%;
   height: 100vh;
   overflow: hidden;
   display: flex;
   background-color: #f8f9fa;
+}
+
+body.dark-mode .dashboard-container {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
 }
 
 /* Dashboard Layout */
@@ -15,26 +20,58 @@
   position: relative;
 }
 
+/* Sidebar Styles */
+.sidebar {
+  width: 250px;
+  position: fixed;
+  height: 100vh;
+  z-index: 10;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease, transform 0.3s ease;
+  left: 0;
+  top: 0;
+}
+
+body.dark-mode .sidebar {
+  background-color: #222222;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
 /* Right Side Content Area */
-.Dashboard-right-side {
+.dashboard-content {
   flex: 1;
   overflow-y: auto;
-  padding: 2rem;
-  padding-top: 1.5rem;
-  width: 100%;
-  transition: margin-left 0.3s ease, width 0.3s ease;
-  align-items: flex-start;
-  justify-content: flex-start;
-  display: flex;
-}
-
-/* Sidebar States */
-.sidebar-open .Dashboard-right-side {
+  overflow-x: hidden;
   margin-left: 250px;
+  transition: margin-left 0.3s ease;
+  background-color: #f8f9fa;
 }
 
-.sidebar-collapsed .Dashboard-right-side {
-  margin-left: 70px !important;
+body.dark-mode .dashboard-content {
+  background-color: #1a1a1a;
+}
+
+.sidebar.collapsed ~ .dashboard-content {
+  margin-left: 70px;
+}
+
+.dashboard-right-side {
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+body.dark-mode .dashboard-right-side {
+  color: #f0f0f0;
 }
 
 /* Loading State */
@@ -49,6 +86,11 @@
   background-color: #f8f9fa;
 }
 
+body.dark-mode .dashboard-loading {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
 .dashboard-loading::after {
   content: "";
   width: 40px;
@@ -60,39 +102,122 @@
   margin-left: 10px;
 }
 
+body.dark-mode .dashboard-loading::after {
+  border: 4px solid #333;
+  border-top: 4px solid #ff8f00;
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
+/* Error State */
+.dashboard-error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+}
+
+body.dark-mode .dashboard-error {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
+.dashboard-error button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #ff8f00;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+body.dark-mode .dashboard-error button {
+  background-color: #ff8f00;
+}
+
+/* Coming Soon Placeholder */
+.coming-soon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  color: #666;
+  margin: 1rem 0;
+}
+
+body.dark-mode .coming-soon {
+  background-color: #2a2a2a;
+  color: #ccc;
+}
+
 /* Mobile Sidebar Toggle Button */
-.mobile-sidebar-toggle {
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
   position: fixed;
   top: 15px;
   left: 15px;
   z-index: 100;
-  background: #ffffff;
+  background-color: #ff8f00;
+  color: white;
   border: none;
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  width: 48px;
+  height: 48px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  font-size: 0;
 }
 
-.mobile-sidebar-toggle:hover {
-  background: #f8f8f8;
+.mobile-menu-toggle::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: white;
+  position: relative;
+  box-shadow: 0 6px 0 white, 0 -6px 0 white;
+}
+
+.mobile-menu-toggle:hover {
+  background-color: #e68200;
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.mobile-sidebar-toggle svg {
-  font-size: 22px;
-  color: #ff8f00;
+body.dark-mode .mobile-menu-toggle {
+  background-color: #333;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .mobile-menu-toggle:hover {
+  background-color: #444;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: flex;
+  }
+}
+
+body.dark-mode .mobile-menu-toggle {
+  background: #2a2a2a;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  color: #f0f0f0;
 }
 
 /* Overlay for Mobile */
@@ -103,59 +228,74 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 99;
+  z-index: 9;
+  display: none;
   backdrop-filter: blur(2px);
+}
+
+body.dark-mode .sidebar-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 /* Media Queries for Responsive Design */
 @media (max-width: 768px) {
-  .sidebar-open .Dashboard-right-side {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 250px;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .dashboard-content {
     margin-left: 0;
   }
   
-  .Dashboard-right-side {
-    width: 100%;
-    padding: 15px;
-    padding-top: 60px; /* Add space for the fixed toggle button */
+  .sidebar.collapsed ~ .dashboard-content {
+    margin-left: 0;
   }
   
-  /* Make sure the sidebar toggle is always visible on mobile */
-  .mobile-sidebar-toggle {
-    display: flex !important;
-    z-index: 101;
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  
+  .sidebar-overlay {
+    display: block;
+  }
+  
+  .dashboard-right-side {
+    padding: 1rem;
+    padding-top: 60px; /* Add space for the fixed toggle button */
   }
 }
 
-/* Dark Mode Styles */
-.dark-mode .Dashboard-container,
-.dark-mode .Dashboard-right-side {
-  background-color: #1a1a1a;
-  color: #f0f0f0;
+/* Tablet Adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .dashboard-right-side {
+    padding: 1.5rem;
+  }
 }
 
-.dark-mode .dashboard-loading {
-  background-color: #1a1a1a;
-  color: #f0f0f0;
+/* Add this to your existing mobile-menu-toggle styles */
+.mobile-menu-toggle.hidden {
+  display: none;
 }
 
-.dark-mode .dashboard-loading::after {
-  border: 4px solid #333;
-  border-top: 4px solid #ff8f00;
+/* Make sure you have this overlay style */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9;
+  display: none;
 }
 
-.dark-mode .mobile-sidebar-toggle {
-  background: #2a2a2a;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-}
-
-.dark-mode .mobile-sidebar-toggle:hover {
-  background: #333;
-}
-
-.dark-mode .mobile-sidebar-toggle svg {
-  color: #ff8f00;
-}
-
-.dark-mode .sidebar-overlay {
-  background-color: rgba(0, 0, 0, 0.6);
+@media (max-width: 768px) {
+  .sidebar-overlay {
+    display: block;
+  }
 }
