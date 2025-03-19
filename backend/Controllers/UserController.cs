@@ -1,6 +1,7 @@
+using System.Security.Claims; // ✅ Import ClaimTypes
 using Backend.Data;
 using Backend.Models;
-using Backend.Services; // Import TokenService
+using Backend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -40,53 +41,68 @@ namespace Backend.Controllers
 
         // ✅ LOGIN USER
         [HttpPost("login")]
-            public async Task<IActionResult> LoginUser([FromBody] LoginRequest loginRequest)
+        public async Task<IActionResult> LoginUser([FromBody] LoginRequest loginRequest)
+        {
+            if (string.IsNullOrWhiteSpace(loginRequest.Email) || string.IsNullOrWhiteSpace(loginRequest.Password))
+                return BadRequest("Email and password are required.");
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginRequest.Email);
+
+            if (user == null || !VerifyPassword(loginRequest.Password, user.PasswordHash))
+                return Unauthorized("Invalid email or password.");
+
+            var token = _tokenService.GenerateToken(user);
+
+            return Ok(new
             {
-                // ✅ Ensure request contains both email and password
-                if (string.IsNullOrWhiteSpace(loginRequest.Email) || string.IsNullOrWhiteSpace(loginRequest.Password))
-                    return BadRequest("Email and password are required.");
-
-                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginRequest.Email);
-                
-                // ✅ Check if user exists and password matches
-                if (user == null || !VerifyPassword(loginRequest.Password, user.PasswordHash))
-                    return Unauthorized("Invalid email or password.");
-
-                var token = _tokenService.GenerateToken(user);
-
-                return Ok(new
+                Message = "Login successful!",
+                Token = token,
+                User = new
                 {
-                    Message = "Login successful!",
-                    Token = token,
-                    User = new
-                    {
-                        user.Id,
-                        user.FirstName,
-                        user.LastName,
-                        user.Email
-                    }
-                });
-            }
-        // ✅ GET LOGGED-IN USER INFO (Protected Route)
+                    user.Id,
+                    user.FirstName,
+                    user.LastName,
+                    user.Email
+                }
+            });
+        }
+
+        // ✅ GET LOGGED-IN USER INFO (Using Email Claim Only)
+        // ✅ GET LOGGED-IN USER INFO (Using Email Claim Only)
         [Authorize]
         [HttpGet("profile")]
         public async Task<IActionResult> GetUserProfile()
         {
-            var userId = int.Parse(User.FindFirst("sub")?.Value ?? "0");
+            try
+            {
+                // ✅ Extract email from JWT Token
+                var emailClaim = User.FindFirst(ClaimTypes.Email);
+                if (emailClaim == null)
+                {
+                    Console.WriteLine("❌ No email claim found in token.");
+                    return Unauthorized("Invalid token. Please log in again.");
+                }
 
-            var user = await _context.Users.FindAsync(userId);
-            if (user == null)
-                return NotFound("User not found.");
+                string email = emailClaim.Value;
+                Console.WriteLine($"🔍 Looking for user with email: {email}");
 
-            return Ok(new 
-            { 
-                user.Id, 
-                user.FirstName, 
-                user.LastName, 
-                user.Email, 
-                user.FitnessGoal, 
-                user.ActivityLevel 
-            });
+                // ✅ Fetch user by email (Not ID)
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower());
+                if (user == null)
+                {
+                    Console.WriteLine($"❌ No user found with email: {email}");
+                    return NotFound("User not found. Please log in again.");
+                }
+
+                Console.WriteLine($"✅ User found: {user.Id}, {user.Email}");
+                
+                return Ok(MapUserProfile(user));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error in GetUserProfile: {ex.Message}");
+                return StatusCode(500, $"An error occurred while retrieving the user profile: {ex.Message}");
+            }
         }
 
         // ✅ HASH PASSWORD (PRIVATE METHOD)
@@ -103,6 +119,25 @@ namespace Backend.Controllers
         private bool VerifyPassword(string inputPassword, string storedHash)
         {
             return HashPassword(inputPassword) == storedHash;
+        }
+
+        // ✅ MAP USER PROFILE DATA (PRIVATE METHOD)
+        private object MapUserProfile(User user)
+        {
+            return new
+            {
+                user.Id,
+                user.FirstName,
+                user.LastName,
+                user.Email,
+                Username = $"{user.FirstName} {user.LastName}",
+                DateOfBirth = user.DateOfBirth?.ToString("yyyy-MM-dd"),
+                user.Gender,
+                user.Height,
+                user.Weight,
+                user.FitnessGoal,
+                user.ActivityLevel
+            };
         }
     }
 }

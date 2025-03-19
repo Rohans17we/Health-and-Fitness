@@ -1,11 +1,19 @@
 import React from 'react';
 
-const ActivityChart = () => {
-  // In a real app, you would use a charting library like Chart.js or Recharts
+const ActivityChart = ({ userData }) => {
+  // Check if activity data exists
+  const hasActivityData = userData?.activityData && 
+                          Array.isArray(userData.activityData) && 
+                          userData.activityData.length > 0;
+  
+  // Sample days of the week
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+  
   return (
     <div className="activity-chart-container">
+      <h3>Activity Overview</h3>
+      
       <div className="chart-header">
-        <h3>Activity Overview</h3>
         <div className="chart-legend">
           <div className="legend-item">
             <div className="legend-color workout"></div>
@@ -18,36 +26,33 @@ const ActivityChart = () => {
         </div>
       </div>
       
-      <div className="chart-placeholder">
-        {/* This would be replaced with an actual chart component */}
-        <div className="chart-bars">
-          <div className="chart-day">
-            <div className="bar workout" style={{ height: '60%' }}></div>
-            <div className="bar steps" style={{ height: '80%' }}></div>
-            <div className="day-label">Mon</div>
-          </div>
-          <div className="chart-day">
-            <div className="bar workout" style={{ height: '40%' }}></div>
-            <div className="bar steps" style={{ height: '70%' }}></div>
-            <div className="day-label">Tue</div>
-          </div>
-          <div className="chart-day">
-            <div className="bar workout" style={{ height: '70%' }}></div>
-            <div className="bar steps" style={{ height: '60%' }}></div>
-            <div className="day-label">Wed</div>
-          </div>
-          <div className="chart-day">
-            <div className="bar workout" style={{ height: '30%' }}></div>
-            <div className="bar steps" style={{ height: '50%' }}></div>
-            <div className="day-label">Thu</div>
-          </div>
-          <div className="chart-day">
-            <div className="bar workout" style={{ height: '80%' }}></div>
-            <div className="bar steps" style={{ height: '90%' }}></div>
-            <div className="day-label">Fri</div>
+      {hasActivityData ? (
+        <div className="chart-placeholder">
+          <div className="chart-bars">
+            {days.map((day, index) => (
+              <div className="chart-day" key={index}>
+                <div 
+                  className="bar workout" 
+                  style={{ 
+                    height: `${userData.activityData[index]?.workout || 0}%` 
+                  }}
+                ></div>
+                <div 
+                  className="bar steps" 
+                  style={{ 
+                    height: `${userData.activityData[index]?.steps || 0}%` 
+                  }}
+                ></div>
+                <div className="day-label">{day}</div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="data-not-available">
+          <p>Activity data not available</p>
+        </div>
+      )}
     </div>
   );
 };

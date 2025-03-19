@@ -154,6 +154,7 @@
 /Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/obj/Debug/net9.0/backend.csproj.CoreCompileInputs.cache
 /Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/obj/Debug/net9.0/backend.MvcApplicationPartsAssemblyInfo.cs
 /Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/obj/Debug/net9.0/backend.MvcApplicationPartsAssemblyInfo.cache
+/Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/obj/Debug/net9.0/backend.sourcelink.json
 /Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/obj/Debug/net9.0/scopedcss/bundle/backend.styles.css
 /Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/obj/Debug/net9.0/staticwebassets.build.json
 /Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/obj/Debug/net9.0/staticwebassets.development.json
@@ -170,4 +171,3 @@
 /Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/obj/Debug/net9.0/backend.pdb
 /Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/obj/Debug/net9.0/backend.genruntimeconfig.cache
 /Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/obj/Debug/net9.0/ref/backend.dll
-/Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/obj/Debug/net9.0/backend.sourcelink.json

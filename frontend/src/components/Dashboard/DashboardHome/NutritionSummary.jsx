@@ -1,80 +1,98 @@
 import React from 'react';
 
-const NutritionSummary = () => {
-  const nutritionData = {
-    calories: { consumed: 1850, goal: 2200 },
-    protein: { consumed: 95, goal: 120 },
-    carbs: { consumed: 210, goal: 250 },
-    fat: { consumed: 55, goal: 70 }
+const NutritionSummary = ({ userData }) => {
+  // Check if nutrition data exists
+  const hasNutritionData = userData?.nutrition !== undefined;
+  
+  // Default values or from userData if available
+  const nutrition = userData?.nutrition || {};
+  
+  const calories = {
+    current: nutrition.calories?.current || 0,
+    goal: nutrition.calories?.goal || 2200
   };
   
-  const calculatePercentage = (consumed, goal) => {
-    return Math.min(Math.round((consumed / goal) * 100), 100);
+  const protein = {
+    current: nutrition.protein?.current || 0,
+    goal: nutrition.protein?.goal || 120
   };
+  
+  const carbs = {
+    current: nutrition.carbs?.current || 0,
+    goal: nutrition.carbs?.goal || 250
+  };
+  
+  const fat = {
+    current: nutrition.fat?.current || 0,
+    goal: nutrition.fat?.goal || 70
+  };
+  
+  // Calculate percentages
+  const getPercentage = (current, goal) => Math.min(Math.round((current / goal) * 100), 100);
   
   return (
     <div className="nutrition-container">
       <h3>Nutrition Summary</h3>
       
-      <div className="nutrition-item">
-        <div className="nutrition-header">
-          <span className="nutrition-label">Calories</span>
-          <span className="nutrition-values">
-            {nutritionData.calories.consumed} / {nutritionData.calories.goal} kcal
-          </span>
+      {hasNutritionData ? (
+        <>
+          <div className="nutrition-item">
+            <div className="nutrition-header">
+              <span className="nutrition-label">Calories</span>
+              <span className="nutrition-values">{calories.current} / {calories.goal} kcal</span>
+            </div>
+            <div className="nutrition-progress">
+              <div 
+                className="nutrition-progress-fill calories" 
+                style={{ width: `${getPercentage(calories.current, calories.goal)}%` }}
+              ></div>
+            </div>
+          </div>
+          
+          <div className="nutrition-item">
+            <div className="nutrition-header">
+              <span className="nutrition-label">Protein</span>
+              <span className="nutrition-values">{protein.current} / {protein.goal} g</span>
+            </div>
+            <div className="nutrition-progress">
+              <div 
+                className="nutrition-progress-fill protein" 
+                style={{ width: `${getPercentage(protein.current, protein.goal)}%` }}
+              ></div>
+            </div>
+          </div>
+          
+          <div className="nutrition-item">
+            <div className="nutrition-header">
+              <span className="nutrition-label">Carbs</span>
+              <span className="nutrition-values">{carbs.current} / {carbs.goal} g</span>
+            </div>
+            <div className="nutrition-progress">
+              <div 
+                className="nutrition-progress-fill carbs" 
+                style={{ width: `${getPercentage(carbs.current, carbs.goal)}%` }}
+              ></div>
+            </div>
+          </div>
+          
+          <div className="nutrition-item">
+            <div className="nutrition-header">
+              <span className="nutrition-label">Fat</span>
+              <span className="nutrition-values">{fat.current} / {fat.goal} g</span>
+            </div>
+            <div className="nutrition-progress">
+              <div 
+                className="nutrition-progress-fill fat" 
+                style={{ width: `${getPercentage(fat.current, fat.goal)}%` }}
+              ></div>
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="data-not-available">
+          <p>Nutrition data not available</p>
         </div>
-        <div className="nutrition-progress">
-          <div 
-            className="nutrition-progress-fill calories" 
-            style={{ width: `${calculatePercentage(nutritionData.calories.consumed, nutritionData.calories.goal)}%` }}
-          ></div>
-        </div>
-      </div>
-      
-      <div className="nutrition-item">
-        <div className="nutrition-header">
-          <span className="nutrition-label">Protein</span>
-          <span className="nutrition-values">
-            {nutritionData.protein.consumed} / {nutritionData.protein.goal} g
-          </span>
-        </div>
-        <div className="nutrition-progress">
-          <div 
-            className="nutrition-progress-fill protein" 
-            style={{ width: `${calculatePercentage(nutritionData.protein.consumed, nutritionData.protein.goal)}%` }}
-          ></div>
-        </div>
-      </div>
-      
-      <div className="nutrition-item">
-        <div className="nutrition-header">
-          <span className="nutrition-label">Carbs</span>
-          <span className="nutrition-values">
-            {nutritionData.carbs.consumed} / {nutritionData.carbs.goal} g
-          </span>
-        </div>
-        <div className="nutrition-progress">
-          <div 
-            className="nutrition-progress-fill carbs" 
-            style={{ width: `${calculatePercentage(nutritionData.carbs.consumed, nutritionData.carbs.goal)}%` }}
-          ></div>
-        </div>
-      </div>
-      
-      <div className="nutrition-item">
-        <div className="nutrition-header">
-          <span className="nutrition-label">Fat</span>
-          <span className="nutrition-values">
-            {nutritionData.fat.consumed} / {nutritionData.fat.goal} g
-          </span>
-        </div>
-        <div className="nutrition-progress">
-          <div 
-            className="nutrition-progress-fill fat" 
-            style={{ width: `${calculatePercentage(nutritionData.fat.consumed, nutritionData.fat.goal)}%` }}
-          ></div>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

@@ -1,7 +1,20 @@
 import React from 'react';
 import { FaHeartbeat, FaWalking, FaFire } from 'react-icons/fa';
 
-const HealthMetrics = ({ heartRate, steps, caloriesBurned }) => {
+const HealthMetrics = ({ userData }) => {
+  // Default values if data is not available
+  const heartRate = userData?.healthMetrics?.heartRate || 'N/A';
+  const steps = userData?.healthMetrics?.steps || 'N/A';
+  const caloriesBurned = userData?.healthMetrics?.caloriesBurned || 'N/A';
+
+  // Helper function to render metric value with appropriate styling
+  const renderMetricValue = (value) => {
+    if (value === 'N/A') {
+      return <span className="metric-value not-available">Data not available</span>;
+    }
+    return <span className="metric-value">{value}</span>;
+  };
+
   return (
     <div className="health-metrics-container">
       <h3>Health Metrics</h3>
@@ -12,9 +25,9 @@ const HealthMetrics = ({ heartRate, steps, caloriesBurned }) => {
             <FaHeartbeat />
           </div>
           <div className="metric-data">
-            <span className="metric-value">{heartRate}</span>
+            {renderMetricValue(heartRate)}
             <span className="metric-label">Heart Rate</span>
-            <span className="metric-unit">bpm</span>
+            {heartRate !== 'N/A' && <span className="metric-unit">bpm</span>}
           </div>
         </div>
         
@@ -23,9 +36,9 @@ const HealthMetrics = ({ heartRate, steps, caloriesBurned }) => {
             <FaWalking />
           </div>
           <div className="metric-data">
-            <span className="metric-value">{steps}</span>
+            {renderMetricValue(steps)}
             <span className="metric-label">Steps</span>
-            <span className="metric-unit">today</span>
+            {steps !== 'N/A' && <span className="metric-unit">today</span>}
           </div>
         </div>
         
@@ -34,9 +47,9 @@ const HealthMetrics = ({ heartRate, steps, caloriesBurned }) => {
             <FaFire />
           </div>
           <div className="metric-data">
-            <span className="metric-value">{caloriesBurned}</span>
+            {renderMetricValue(caloriesBurned)}
             <span className="metric-label">Calories</span>
-            <span className="metric-unit">burned</span>
+            {caloriesBurned !== 'N/A' && <span className="metric-unit">burned</span>}
           </div>
         </div>
       </div>

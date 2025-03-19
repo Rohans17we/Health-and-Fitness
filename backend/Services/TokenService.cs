@@ -26,12 +26,14 @@ namespace Backend.Services
 
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret));
 
-            var claims = new[]
+            var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Name, user.FirstName),
-                new Claim(ClaimTypes.Surname, user.LastName)
+                new Claim(ClaimTypes.Surname, user.LastName),
+                // Add a new claim for the full name
+                new Claim("username", $"{user.FirstName} {user.LastName}")
             };
 
             var token = new JwtSecurityToken(

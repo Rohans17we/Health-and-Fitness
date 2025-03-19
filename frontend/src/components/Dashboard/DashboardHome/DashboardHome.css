@@ -759,3 +759,54 @@
   background-color: #444;
   color: #ff8f00;
 }
+
+/* Add this to your CSS file */
+.not-available {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.data-not-available {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  color: #999;
+  font-style: italic;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.dashboard-error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+}
+
+.dashboard-error p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.retry-button, .login-button {
+  background-color: #ff8f00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.retry-button:hover, .login-button:hover {
+  background-color: #e68200;
+}
