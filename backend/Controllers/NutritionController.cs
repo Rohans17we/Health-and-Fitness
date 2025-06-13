@@ -59,6 +59,26 @@ namespace Backend.Controllers
             nutrition.UserId = user.Id;
             nutrition.User = null; // Prevent serialization issues
 
+            // If DetailsJson is empty, build it from legacy fields for compatibility
+            if (string.IsNullOrWhiteSpace(nutrition.DetailsJson))
+            {
+                var details = new Dictionary<string, object>
+                {
+                    { "calories", nutrition.CaloriesConsumed },
+                    { "foodName", nutrition.FoodName },
+                    { "servingSize", "" },
+                    { "quantity", 1 },
+                    { "unit", "g" },
+                    { "protein", 0 },
+                    { "carbs", 0 },
+                    { "fat", 0 },
+                    { "fiber", 0 },
+                    { "sugar", 0 },
+                    { "brand", "" },
+                };
+                nutrition.DetailsJson = System.Text.Json.JsonSerializer.Serialize(details);
+            }
+
             _context.Nutritions.Add(nutrition);
             await _context.SaveChangesAsync();
 

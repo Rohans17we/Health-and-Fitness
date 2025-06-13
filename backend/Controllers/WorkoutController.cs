@@ -63,7 +63,7 @@ namespace Backend.Controllers
 
         // POST: api/Workout
         [HttpPost]
-        public async Task<ActionResult<Workout>> PostWorkout(Workout workout)
+        public async Task<ActionResult<Workout>> PostWorkout([FromBody] Workout workout)
         {
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int userId))
@@ -85,6 +85,13 @@ namespace Backend.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+        
+            // Basic backend validation for common workout types
+            var errors = ValidateWorkoutDetails(workout.WorkoutType, workout.DetailsJson);
+            if (errors.Count > 0)
+            {
+                return BadRequest(new { errors });
             }
         
             _context.Workouts.Add(workout);
@@ -120,7 +127,13 @@ namespace Backend.Controllers
                 return Forbid();
             }
 
-            // Update the workout
+            // Basic backend validation for common workout types
+            var errors = ValidateWorkoutDetails(workout.WorkoutType, workout.DetailsJson);
+            if (errors.Count > 0)
+            {
+                return BadRequest(new { errors });
+            }
+
             workout.UserId = userId; // Ensure the user ID doesn't change
             _context.Entry(existingWorkout).State = EntityState.Detached;
             _context.Entry(workout).State = EntityState.Modified;
@@ -175,6 +188,48 @@ namespace Backend.Controllers
         private bool WorkoutExists(int id)
         {
             return _context.Workouts.Any(e => e.Id == id);
+        }
+
+        // Helper: Validate workout details JSON for common types
+        private List<string> ValidateWorkoutDetails(string workoutType, string detailsJson)
+        {
+            var errors = new List<string>();
+            if (string.IsNullOrEmpty(detailsJson)) return errors;
+            try
+            {
+                var details = System.Text.Json.JsonDocument.Parse(detailsJson).RootElement;
+                switch (workoutType?.ToLower())
+                {
+                    case "running":
+                    case "cycling":
+                    case "walking":
+                        if (!details.TryGetProperty("distance", out _)) errors.Add("Distance is required.");
+                        if (!details.TryGetProperty("duration", out _)) errors.Add("Duration is required.");
+                        break;
+                    case "weightlifting":
+                    case "strength":
+                        if (!details.TryGetProperty("exerciseName", out _)) errors.Add("Exercise name is required.");
+                        if (!details.TryGetProperty("sets", out _)) errors.Add("Sets is required.");
+                        if (!details.TryGetProperty("reps", out _)) errors.Add("Reps is required.");
+                        if (!details.TryGetProperty("weight", out _)) errors.Add("Weight is required.");
+                        break;
+                    case "yoga":
+                    case "pilates":
+                        if (!details.TryGetProperty("style", out _)) errors.Add("Style is required.");
+                        if (!details.TryGetProperty("duration", out _)) errors.Add("Duration is required.");
+                        break;
+                    case "hiit":
+                        if (!details.TryGetProperty("duration", out _)) errors.Add("Duration is required.");
+                        if (!details.TryGetProperty("rounds", out _)) errors.Add("Rounds is required.");
+                        break;
+                    // Add more types as needed
+                }
+            }
+            catch
+            {
+                errors.Add("Invalid details JSON format.");
+            }
+            return errors;
         }
     }
 }

@@ -1,47 +1,132 @@
 import React, { useState } from 'react';
 import './WorkoutForm.css';
 
+// Define the fields required for each workout type
+const workoutTypeFields = {
+  Running: ['distance', 'duration', 'caloriesBurned', 'intensity', 'notes'],
+  Walking: ['distance', 'duration', 'caloriesBurned', 'intensity', 'notes'],
+  Cycling: ['distance', 'duration', 'caloriesBurned', 'intensity', 'notes'],
+  Swimming: ['laps', 'duration', 'caloriesBurned', 'intensity', 'notes'],
+  'Weight Training': ['sets', 'reps', 'weight', 'duration', 'caloriesBurned', 'intensity', 'notes'],
+  Yoga: ['duration', 'caloriesBurned', 'intensity', 'notes'],
+  HIIT: ['duration', 'caloriesBurned', 'intensity', 'notes'],
+  Pilates: ['duration', 'caloriesBurned', 'intensity', 'notes'],
+  Cardio: ['duration', 'caloriesBurned', 'intensity', 'notes'],
+  Other: ['duration', 'caloriesBurned', 'intensity', 'notes'],
+};
+
+const initialDetailsState = {
+  sets: '',
+  reps: '',
+  weight: '',
+  distance: '',
+  laps: '',
+  duration: '',
+  caloriesBurned: '',
+  intensity: 'Medium',
+  notes: '',
+};
+
 const WorkoutForm = ({ onSubmit, onCancel }) => {
-  const [formData, setFormData] = useState({
-    exerciseType: '',
-    date: new Date().toISOString().split('T')[0],
-    sets: 0,
-    reps: 0,
-    duration: 0,
-    caloriesBurned: 0,
-    intensity: 'Medium',
-    notes: ''
-  });
+  const [workoutType, setWorkoutType] = useState('');
+  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+  const [details, setDetails] = useState(initialDetailsState);
 
-  const exerciseTypes = [
-    'Running',
-    'Walking',
-    'Cycling',
-    'Swimming',
-    'Weight Training',
-    'Yoga',
-    'HIIT',
-    'Pilates',
-    'Cardio',
-    'Other'
-  ];
-
+  const exerciseTypes = Object.keys(workoutTypeFields);
   const intensityLevels = ['Low', 'Medium', 'High'];
 
-  const handleChange = (e) => {
+  const handleTypeChange = (e) => {
+    setWorkoutType(e.target.value);
+    setDetails({ ...initialDetailsState, intensity: 'Medium' });
+  };
+
+  const handleDetailChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: name === 'sets' || name === 'reps' || name === 'duration' || name === 'caloriesBurned'
-        ? parseFloat(value)
-        : value
-    });
+    setDetails((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    // Build details object with only relevant fields
+    const fields = workoutTypeFields[workoutType] || [];
+    const filteredDetails = {};
+    fields.forEach((field) => {
+      if (details[field] !== '') {
+        filteredDetails[field] = isNaN(details[field]) ? details[field] : Number(details[field]);
+      }
+    });
+    onSubmit({
+      workoutType,
+      date,
+      detailsJson: JSON.stringify(filteredDetails),
+    });
   };
+
+  // Render input for a given field name
+  const renderField = (field) => {
+    switch (field) {
+      case 'sets':
+      case 'reps':
+      case 'weight':
+      case 'distance':
+      case 'laps':
+      case 'duration':
+      case 'caloriesBurned':
+        return (
+          <div className="form-group" key={field}>
+            <label htmlFor={field}>{
+              field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, ' $1')
+            }{['duration', 'distance', 'weight'].includes(field) ? ` (${field === 'duration' ? 'minutes' : field === 'distance' ? 'km' : 'kg'})` : ''}</label>
+            <input
+              type="number"
+              id={field}
+              name={field}
+              min="0"
+              step="0.1"
+              value={details[field]}
+              onChange={handleDetailChange}
+              required={['duration', 'distance', 'sets', 'reps', 'weight', 'laps'].includes(field)}
+            />
+          </div>
+        );
+      case 'intensity':
+        return (
+          <div className="form-group" key={field}>
+            <label htmlFor="intensity">Intensity</label>
+            <select
+              id="intensity"
+              name="intensity"
+              value={details.intensity}
+              onChange={handleDetailChange}
+            >
+              {intensityLevels.map((level) => (
+                <option key={level} value={level}>{level}</option>
+              ))}
+            </select>
+          </div>
+        );
+      case 'notes':
+        return (
+          <div className="form-group" key={field}>
+            <label htmlFor="notes">Notes</label>
+            <textarea
+              id="notes"
+              name="notes"
+              value={details.notes}
+              onChange={handleDetailChange}
+              rows="3"
+            ></textarea>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  const fieldsToRender = workoutTypeFields[workoutType] || [];
 
   return (
     <div className="workout-form-container">
@@ -53,115 +138,40 @@ const WorkoutForm = ({ onSubmit, onCancel }) => {
             <select
               id="exerciseType"
               name="exerciseType"
-              value={formData.exerciseType}
-              onChange={handleChange}
+              value={workoutType}
+              onChange={handleTypeChange}
               required
             >
               <option value="">Select Exercise Type</option>
               {exerciseTypes.map((type) => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
+                <option key={type} value={type}>{type}</option>
               ))}
             </select>
           </div>
-
           <div className="form-group">
             <label htmlFor="date">Date</label>
             <input
               type="date"
               id="date"
               name="date"
-              value={formData.date}
-              onChange={handleChange}
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
               required
             />
           </div>
         </div>
-
+        {/* Render fields dynamically based on workout type */}
         <div className="form-row">
-          <div className="form-group">
-            <label htmlFor="sets">Sets</label>
-            <input
-              type="number"
-              id="sets"
-              name="sets"
-              min="0"
-              value={formData.sets}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="reps">Reps</label>
-            <input
-              type="number"
-              id="reps"
-              name="reps"
-              min="0"
-              value={formData.reps}
-              onChange={handleChange}
-            />
-          </div>
+          {fieldsToRender
+            .filter((f) => ['sets', 'reps', 'weight', 'distance', 'laps', 'duration', 'caloriesBurned'].includes(f))
+            .map(renderField)}
         </div>
-
         <div className="form-row">
-          <div className="form-group">
-            <label htmlFor="duration">Duration (minutes)</label>
-            <input
-              type="number"
-              id="duration"
-              name="duration"
-              min="0"
-              step="0.1"
-              value={formData.duration}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="caloriesBurned">Calories Burned</label>
-            <input
-              type="number"
-              id="caloriesBurned"
-              name="caloriesBurned"
-              min="0"
-              value={formData.caloriesBurned}
-              onChange={handleChange}
-            />
-          </div>
+          {fieldsToRender
+            .filter((f) => ['intensity'].includes(f))
+            .map(renderField)}
         </div>
-
-        <div className="form-row">
-          <div className="form-group">
-            <label htmlFor="intensity">Intensity</label>
-            <select
-              id="intensity"
-              name="intensity"
-              value={formData.intensity}
-              onChange={handleChange}
-            >
-              {intensityLevels.map((level) => (
-                <option key={level} value={level}>
-                  {level}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="notes">Notes</label>
-          <textarea
-            id="notes"
-            name="notes"
-            value={formData.notes}
-            onChange={handleChange}
-            rows="3"
-          ></textarea>
-        </div>
-
+        {fieldsToRender.includes('notes') && renderField('notes')}
         <div className="form-actions">
           <button type="submit" className="submit-btn">Save Workout</button>
           <button type="button" className="cancel-btn" onClick={onCancel}>Cancel</button>

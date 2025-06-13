@@ -111,6 +111,52 @@ body.dark-mode .no-foods {
   line-height: 1.5;
 }
 
+/* Modern table styles */
+.food-table.modern th,
+.food-table.modern td {
+  vertical-align: middle;
+  font-size: 15px;
+  transition: background 0.2s;
+}
+
+.food-table.modern td.right {
+  text-align: right;
+}
+
+.food-table.modern tr.even {
+  background-color: #fafbfc;
+}
+
+.food-table.modern tr.odd {
+  background-color: #fff;
+}
+
+body.dark-mode .food-table.modern tr.even {
+  background-color: #23272f;
+}
+
+body.dark-mode .food-table.modern tr.odd {
+  background-color: #181a1b;
+}
+
+.food-table.modern tr:hover {
+  background-color: #f0f4ff;
+}
+
+body.dark-mode .food-table.modern tr:hover {
+  background-color: #2a2e39;
+}
+
+.food-table.modern .highlight-calories {
+  font-weight: bold;
+  color: #e67e22;
+}
+
+.food-table.modern .dash {
+  color: #bbb;
+  font-size: 1.1em;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .food-table-container {
@@ -141,5 +187,12 @@ body.dark-mode .no-foods {
   
   .food-table {
     min-width: 500px;
+  }
+}
+
+@media (max-width: 900px) {
+  .food-table.modern th, .food-table.modern td {
+    padding: 8px 6px;
+    font-size: 13px;
   }
 }

@@ -13,17 +13,16 @@ namespace Backend.Models
         public int UserId { get; set; }
 
         [Required]
-        public string ExerciseType { get; set; }
-        
+        public string WorkoutType { get; set; } = string.Empty; // e.g., Running, Cycling, Weightlifting, etc.
+
         [Required]
         public DateTime Date { get; set; }
 
-        public int Sets { get; set; }
-        public int Reps { get; set; }
-        public float Duration { get; set; } // in minutes
-        public float CaloriesBurned { get; set; }
-        public string Notes { get; set; }
-        public string Intensity { get; set; } // Low, Medium, High
+        public string Intensity { get; set; } = string.Empty; // Low, Medium, High
+        public string Notes { get; set; } = string.Empty;
+
+        // Flexible JSON field for type-specific details
+        public string DetailsJson { get; set; } = string.Empty; // Store type-specific fields as JSON
 
         [ForeignKey("UserId")]
         [JsonIgnore] // Prevent circular references in JSON serialization

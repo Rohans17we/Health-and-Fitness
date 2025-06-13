@@ -2,13 +2,26 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import FoodForm from './FoodForm/FoodForm';
 import FoodTable from './FoodTable/FoodTable';
+import FoodTableFilters from './FoodTable/FoodTableFilters';
 import './DashboardFood.css';
+
+const defaultFilters = {
+  mealType: 'All',
+  dateFrom: '',
+  dateTo: '',
+  timeFrom: '',
+  timeTo: '',
+  calMin: '',
+  calMax: '',
+  sortBy: 'date-desc',
+};
 
 const DashboardFood = () => {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [filters, setFilters] = useState(defaultFilters);
 
   // ✅ Fetch food logs when component mounts
   useEffect(() => {
@@ -42,7 +55,6 @@ const DashboardFood = () => {
       });
 
       setFoods([response.data, ...foods]);
-      setFoods((prevFoods) => [newFood, ...prevFoods]);
       setShowForm(false);
       fetchFoods(); // ✅ Refresh food logs
       return true;
@@ -50,6 +62,24 @@ const DashboardFood = () => {
       console.error('Error adding food log:', err);
       return false;
     }
+  };
+
+  // Filtering and sorting logic
+  const getFilteredFoods = () => {
+    let filtered = [...foods];
+    if (filters.mealType !== 'All') filtered = filtered.filter(f => (f.mealType || 'Other') === filters.mealType);
+    if (filters.dateFrom) filtered = filtered.filter(f => f.consumptionDate >= filters.dateFrom);
+    if (filters.dateTo) filtered = filtered.filter(f => f.consumptionDate <= filters.dateTo);
+    if (filters.timeFrom) filtered = filtered.filter(f => (f.consumptionTime || '').slice(0,5) >= filters.timeFrom);
+    if (filters.timeTo) filtered = filtered.filter(f => (f.consumptionTime || '').slice(0,5) <= filters.timeTo);
+    if (filters.calMin) filtered = filtered.filter(f => (f.caloriesConsumed || 0) >= Number(filters.calMin));
+    if (filters.calMax) filtered = filtered.filter(f => (f.caloriesConsumed || 0) <= Number(filters.calMax));
+    // Sorting
+    if (filters.sortBy === 'date-desc') filtered.sort((a, b) => b.consumptionDate.localeCompare(a.consumptionDate) || b.consumptionTime.localeCompare(a.consumptionTime));
+    if (filters.sortBy === 'date-asc') filtered.sort((a, b) => a.consumptionDate.localeCompare(b.consumptionDate) || a.consumptionTime.localeCompare(b.consumptionTime));
+    if (filters.sortBy === 'calories-desc') filtered.sort((a, b) => (b.caloriesConsumed || 0) - (a.caloriesConsumed || 0));
+    if (filters.sortBy === 'calories-asc') filtered.sort((a, b) => (a.caloriesConsumed || 0) - (b.caloriesConsumed || 0));
+    return filtered;
   };
 
   return (
@@ -60,9 +90,8 @@ const DashboardFood = () => {
           {showForm ? 'Cancel' : 'Add Food'}
         </button>
       </div>
-
+      <FoodTableFilters filters={filters} onChange={setFilters} />
       {showForm && <FoodForm onSubmit={handleAddFood} onCancel={() => setShowForm(false)} />}
-
       {loading ? (
         <div className="loading">Loading food logs...</div>
       ) : error ? (
@@ -71,7 +100,7 @@ const DashboardFood = () => {
           <button className="retry-button" onClick={fetchFoods}>Retry</button>
         </div>
       ) : (
-        <FoodTable foods={foods} />
+        <FoodTable foods={getFilteredFoods()} />
       )}
     </div>
   );

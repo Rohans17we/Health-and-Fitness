@@ -1,0 +1,43 @@
+.workout-table-filters-container {
+  background: #f8fafc;
+  border: 2px solid #e0e7ff;
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+}
+.workout-table-filters-label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #444;
+}
+.workout-table-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  z-index: 2;
+}
+.workout-table-filters select,
+.workout-table-filters input[type="date"],
+.workout-table-filters input[type="number"] {
+  padding: 6px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Dark mode styles */
+body.dark-mode .workout-table-filters-container {
+  background: #23272f;
+  border-color: #334155;
+}
+body.dark-mode .workout-table-filters-label {
+  color: #e0e7ef;
+}
+body.dark-mode .workout-table-filters select,
+body.dark-mode .workout-table-filters input[type="date"],
+body.dark-mode .workout-table-filters input[type="number"] {
+  background: #23272f;
+  color: #e0e7ef;
+  border-color: #334155;
+}

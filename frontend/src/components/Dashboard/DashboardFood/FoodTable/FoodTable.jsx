@@ -23,29 +23,64 @@ const FoodTable = ({ foods }) => {
     }
   };
 
+  const getDetails = (food) => {
+    let details = {};
+    try {
+      details = food.detailsJson ? JSON.parse(food.detailsJson) : {};
+    } catch { details = {}; }
+    return details;
+  };
+
+  const dash = (val) => (val === undefined || val === '' || val === null ? <span className="dash">–</span> : val);
+
   return (
     <div className="food-table-container">
       <h2>Food History</h2>
-      <table className="food-table">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Food</th>
-            <th>Calories</th>
-          </tr>
-        </thead>
-        <tbody>
-          {foods.map(food => (
-            <tr key={food.id}>
-              <td>{formatDate(food.consumptionDate)}</td>
-              <td>{formatTime(food.consumptionTime)}</td>
-              <td>{food.foodName}</td>
-              <td>{food.caloriesConsumed}</td>
+      <div className="table-responsive">
+        <table className="food-table modern">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Meal</th>
+              <th>Food</th>
+              <th>Brand</th>
+              <th>Serving</th>
+              <th>Qty</th>
+              <th>Unit</th>
+              <th>Calories</th>
+              <th>Protein (g)</th>
+              <th>Carbs (g)</th>
+              <th>Fat (g)</th>
+              <th>Fiber (g)</th>
+              <th>Sugar (g)</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {foods.map((food, idx) => {
+              const details = getDetails(food);
+              return (
+                <tr key={food.id} className={idx % 2 === 0 ? 'even' : 'odd'}>
+                  <td>{formatDate(food.consumptionDate)}</td>
+                  <td>{formatTime(food.consumptionTime)}</td>
+                  <td>{dash(food.mealType || 'Other')}</td>
+                  <td>{dash(food.foodName)}</td>
+                  <td>{dash(details.brand)}</td>
+                  <td className="right">{dash(details.servingSize)}</td>
+                  <td className="right">{dash(details.quantity)}</td>
+                  <td>{dash(details.unit)}</td>
+                  <td className="right highlight-calories">{dash(details.calories || food.caloriesConsumed)}</td>
+                  <td className="right">{dash(details.protein)}</td>
+                  <td className="right">{dash(details.carbs)}</td>
+                  <td className="right">{dash(details.fat)}</td>
+                  <td className="right">{dash(details.fiber)}</td>
+                  <td className="right">{dash(details.sugar)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
