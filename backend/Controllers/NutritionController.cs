@@ -36,11 +36,15 @@ namespace Backend.Controllers
             var user = await GetAuthenticatedUser();
             if (user == null) return Unauthorized(new { message = "User not found" });
 
+            // Fetch and order in memory for SQLite compatibility
             var nutritionLogs = await _context.Nutritions
                 .Where(n => n.UserId == user.Id)
+                .ToListAsync();
+
+            nutritionLogs = nutritionLogs
                 .OrderByDescending(n => n.ConsumptionDate)
                 .ThenByDescending(n => n.ConsumptionTime)
-                .ToListAsync();
+                .ToList();
 
             return Ok(nutritionLogs);
         }

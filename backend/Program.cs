@@ -8,19 +8,26 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Load Environment Variables
-builder.Configuration.AddEnvironmentVariables(); 
+// Directly set configuration values for local development/migrations
+var dbProvider = "Sqlite";
+var sqliteConn = "Data Source=healthtracker.db";
+var jwtSecret = "cshajgdvmwjsvdjsuakjv12521332hgewdtjwqsgdv@$%^&*sgacdmaxv,vcjzmdh";
+var jwtIssuer = "HealthTrackerAPI";
+var jwtAudience = "HealthTrackerUsers";
 
-// ✅ Retrieve Database Connection String
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// ✅ Flexible Database Provider (SQL Server or SQLite)
+if (dbProvider == "Sqlite")
+{
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseSqlite(sqliteConn));
+}
+else
+{
+    var sqlServerConn = "Server=192.168.29.230,1433;Database=HealthTrackerDB;User Id=health_admin;Password=Rohans@17;TrustServerCertificate=True;";
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseSqlServer(sqlServerConn));
+}
 
-// ✅ Load JWT Settings
-var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET") 
-    ?? throw new InvalidOperationException("❌ JWT_SECRET is missing. Set it in the environment variables.");
-
-var jwtIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? "HealthTrackerAPI";
-var jwtAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE") ?? "HealthTrackerUsers";
 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret));
 
 // ✅ Configure JWT Authentication
@@ -42,7 +49,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 
 // ✅ Register TokenService for JWT Generation
-builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<TokenService>(_ => new TokenService(jwtSecret, jwtIssuer, jwtAudience, 2));
 
 // ✅ Add Swagger with JWT Security
 builder.Services.AddControllers();

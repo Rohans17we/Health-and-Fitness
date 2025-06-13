@@ -8,23 +8,22 @@ namespace Backend.Services
 {
     public class TokenService
     {
-        private readonly IConfiguration _configuration;
+        private readonly string _jwtSecret;
+        private readonly string _jwtIssuer;
+        private readonly string _jwtAudience;
+        private readonly int _tokenExpiryHours;
 
-        public TokenService(IConfiguration configuration)
+        public TokenService(string jwtSecret, string jwtIssuer, string jwtAudience, int tokenExpiryHours = 2)
         {
-            _configuration = configuration;
+            _jwtSecret = jwtSecret;
+            _jwtIssuer = jwtIssuer;
+            _jwtAudience = jwtAudience;
+            _tokenExpiryHours = tokenExpiryHours;
         }
 
         public string GenerateToken(User user)
         {
-            var jwtSecret = _configuration.GetValue<string>("JWT_SECRET") 
-                ?? throw new InvalidOperationException("JWT_SECRET is missing.");
-
-            var jwtIssuer = _configuration.GetValue<string>("JWT_ISSUER", "HealthTrackerAPI");
-            var jwtAudience = _configuration.GetValue<string>("JWT_AUDIENCE", "HealthTrackerUsers");
-            var tokenExpiryHours = _configuration.GetValue<int>("JWT_EXPIRY_HOURS", 2);
-
-            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret));
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSecret));
 
             var claims = new List<Claim>
             {
@@ -37,10 +36,10 @@ namespace Backend.Services
             };
 
             var token = new JwtSecurityToken(
-                issuer: jwtIssuer,
-                audience: jwtAudience,
+                issuer: _jwtIssuer,
+                audience: _jwtAudience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddHours(tokenExpiryHours), // Configurable Expiry
+                expires: DateTime.UtcNow.AddHours(_tokenExpiryHours),
                 signingCredentials: new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256)
             );
 

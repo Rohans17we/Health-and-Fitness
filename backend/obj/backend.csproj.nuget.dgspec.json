@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/backend.csproj": {}
+    "C:\\Users\\RO20587587\\Desktop\\Personal\\Projects\\Health-and-Fitness\\backend\\backend.csproj": {}
   },
   "projects": {
-    "/Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/backend.csproj": {
+    "C:\\Users\\RO20587587\\Desktop\\Personal\\Projects\\Health-and-Fitness\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/backend.csproj",
+        "projectUniqueName": "C:\\Users\\RO20587587\\Desktop\\Personal\\Projects\\Health-and-Fitness\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "/Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/backend.csproj",
-        "packagesPath": "/Users/rohans17we/.nuget/packages/",
-        "outputPath": "/Users/rohans17we/Desktop/Work/Wipro/Phase2/Project/Health&Fitness/backend/obj/",
+        "projectPath": "C:\\Users\\RO20587587\\Desktop\\Personal\\Projects\\Health-and-Fitness\\backend\\backend.csproj",
+        "packagesPath": "C:\\Users\\RO20587587\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\RO20587587\\Desktop\\Personal\\Projects\\Health-and-Fitness\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/rohans17we/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\RO20587587\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net8.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -37,12 +37,11 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "DotNetEnv": {
               "target": "Package",
@@ -50,21 +49,25 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[9.0.2, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -94,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.410/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
