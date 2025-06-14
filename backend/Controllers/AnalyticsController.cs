@@ -191,5 +191,33 @@ namespace Backend.Controllers
 
             return Ok(summary);
         }
+
+        // GET: api/Analytics/water-summary
+        [HttpGet("water-summary")]
+        public async Task<IActionResult> GetWaterSummary([FromQuery] int days = 30)
+        {
+            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+            if (userEmail == null) return Unauthorized("Invalid token. Please log in again.");
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+            if (user == null) return NotFound("User not found.");
+
+            var since = DateTime.UtcNow.Date.AddDays(-days + 1);
+            var waterLogs = await _context.WaterIntakes
+                .Where(w => w.UserId == user.Id && w.IntakeTime >= since)
+                .ToListAsync();
+
+            var summary = waterLogs
+                .GroupBy(w => w.IntakeTime.Date)
+                .Select(g => new {
+                    Date = g.Key.ToString("yyyy-MM-dd"),
+                    Total = g.Sum(x => x.Amount)
+                })
+                .OrderBy(x => x.Date)
+                .ToList();
+
+            var totalAll = waterLogs.Sum(w => w.Amount);
+
+            return Ok(new { total = totalAll, daily = summary });
+        }
     }
 }

@@ -11,10 +11,15 @@ namespace Backend.Models
         [Required]
         public int UserId { get; set; }
 
-        public int WaterAmount { get; set; } // in ml
-        public DateTime Date { get; set; } = DateTime.UtcNow;
+        [Required]
+        public decimal Amount { get; set; } // in ml
+
+        [Required]
+        public DateTime IntakeTime { get; set; } = DateTime.UtcNow;
+
+        public string? Note { get; set; }
 
         [ForeignKey("UserId")]
-        public User User { get; set; }
+        public User? User { get; set; }
     }
 }
