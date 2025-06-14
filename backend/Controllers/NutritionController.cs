@@ -84,5 +84,35 @@ namespace Backend.Controllers
 
             return CreatedAtAction(nameof(GetNutrition), new { id = nutrition.Id }, nutrition);
         }
+
+        // GET: api/Nutrition/summary - Get nutrition summary for a time period
+        [HttpGet("summary")]
+        public async Task<ActionResult<IEnumerable<object>>> GetNutritionSummary([FromQuery] int days = 7)
+        {
+            var user = await GetAuthenticatedUser();
+            if (user == null) return Unauthorized(new { message = "User not found" });
+
+            // Calculate date range
+            var endDate = DateTime.Now.Date.AddDays(1); // Include today, so end at midnight tomorrow
+            var startDate = endDate.AddDays(-days);
+
+            // Get all nutrition entries in the date range
+            var nutritions = await _context.Nutritions
+                .Where(n => n.UserId == user.Id && n.ConsumptionDate >= startDate && n.ConsumptionDate < endDate)
+                .ToListAsync();
+
+            // Group by date and calculate totals
+            var summary = nutritions
+                .GroupBy(n => n.ConsumptionDate.Date)
+                .Select(g => new 
+                {
+                    date = g.Key.ToString("yyyy-MM-dd"),
+                    total = g.Sum(n => n.CaloriesConsumed)
+                })
+                .OrderBy(s => s.date)
+                .ToList();
+
+            return Ok(summary);
+        }
     }
 }
