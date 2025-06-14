@@ -1,0 +1,173 @@
+/* ProfileOverview.css */
+
+.profile-overview-widget {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-overview-widget:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Header */
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* Profile picture styles removed */
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-username {
+  color: #757575;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.profile-name {
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #212121;
+}
+
+.verification-icon {
+  margin-left: 8px;
+  color: #4caf50;
+  font-size: 20px;
+}
+
+/* Divider */
+.profile-divider {
+  height: 1px;
+  background-color: #f0f0f0;
+  margin: 20px 0;
+}
+
+/* Metrics grid */
+.profile-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-top: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .profile-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.metric-label {
+  color: #757575;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.metric-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #212121;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.metric-value.fitness-goal {
+  font-size: 16px;
+  line-height: 1.2;
+  text-transform: capitalize;
+}
+
+.metric-unit {
+  font-size: 14px;
+  font-weight: 400;
+  color: #757575;
+  margin-left: 2px;
+}
+
+/* BMI tag styles */
+.bmi-tag {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 6px;
+  text-transform: lowercase;
+  font-weight: 500;
+}
+
+.bmi-healthy {
+  background-color: rgba(76, 175, 80, 0.15);
+  color: #2e7d32;
+  padding: 4px 8px;
+}
+
+.bmi-underweight {
+  background-color: rgba(255, 193, 7, 0.15);
+  color: #ff8f00;
+}
+
+.bmi-overweight {
+  background-color: rgba(255, 152, 0, 0.15);
+  color: #ef6c00;
+}
+
+.bmi-obese {
+  background-color: rgba(244, 67, 54, 0.15);
+  color: #d32f2f;
+}
+
+/* Dark mode styles */
+body.dark-mode .profile-overview-widget {
+  background-color: #2d2d2d;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .profile-picture {
+  border-color: #3d3d3d;
+}
+
+body.dark-mode .profile-username {
+  color: #aaa;
+}
+
+body.dark-mode .profile-name {
+  color: #f0f0f0;
+}
+
+body.dark-mode .profile-divider {
+  background-color: #3d3d3d;
+}
+
+body.dark-mode .metric-label {
+  color: #aaa;
+}
+
+body.dark-mode .metric-value {
+  color: #f0f0f0;
+}
+
+body.dark-mode .metric-value.fitness-goal {
+  color: #f0f0f0;
+}
+
+body.dark-mode .metric-unit {
+  color: #bbb;
+}
