@@ -11,11 +11,9 @@ namespace Backend.Models
 
         public DateTime SleepStart { get; set; }
         public DateTime SleepEnd { get; set; }
-        public double HoursSlept { get; set; }
-
-        public DateTime Date { get; set; } = DateTime.UtcNow;
+        public double HoursSlept { get; set; }        public DateTime Date { get; set; } = DateTime.UtcNow;
 
         [ForeignKey("UserId")]
-        public User User { get; set; }
+        public User? User { get; set; }
     }
 }
