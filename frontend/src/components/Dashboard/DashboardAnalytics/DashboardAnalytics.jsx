@@ -27,6 +27,7 @@ const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff7f50', '#a4de6c', '#d0ed57'
 const DashboardAnalytics = () => {
   const [calorieComparisonData, setCalorieComparisonData] = useState([]);
   const [nutritionSummary, setNutritionSummary] = useState([]);
+  const [waterSummary, setWaterSummary] = useState({ total: 0, daily: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const token = localStorage.getItem('token');
@@ -69,6 +70,15 @@ const DashboardAnalytics = () => {
           console.log('Nutrition summary fetch failed:', nutritionSummaryResponse.status);
         }
         setNutritionSummary(nutritionSummaryResult);
+
+        // Fetch water intake summary
+        const waterSummaryResponse = await fetch('http://localhost:5057/api/Analytics/water-summary', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (waterSummaryResponse.ok) {
+          const waterSummaryResult = await waterSummaryResponse.json();
+          setWaterSummary(waterSummaryResult);
+        }
       } catch (err) {
         console.error('Error fetching data:', err);
         setError('Failed to fetch data.');
@@ -126,6 +136,11 @@ const DashboardAnalytics = () => {
             <span>Fiber: <b>{totalMacros.fiber.toFixed(1)}g</b></span>
             <span>Sugar: <b>{totalMacros.sugar.toFixed(1)}g</b></span>
           </div>
+        </div>
+        <div className="analytics-card summary-card water">
+          <h3>Total Water Intake</h3>
+          <span className="water-intake-total"><AnimatedNumber value={waterSummary.total} /></span>
+          <span style={{fontSize:'1rem',color:'#38bdf8',fontWeight:500}}>ml</span>
         </div>
       </div>
       {/* Area Chart for trends */}
@@ -215,6 +230,24 @@ const DashboardAnalytics = () => {
           </ResponsiveContainer>
         ) : (
           <p className="no-data-message">No meal type data available.</p>
+        )}
+      </div>
+      {/* Water Intake Trend Chart */}
+      <div className="analytics-card chart-card">
+        <h3>Water Intake Trend</h3>
+        {waterSummary.daily && waterSummary.daily.length > 0 ? (
+          <ResponsiveContainer width="100%" height={300}>
+            <AreaChart data={waterSummary.daily} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+              <XAxis dataKey="date" />
+              <YAxis />
+              <CartesianGrid strokeDasharray="3 3" />
+              <Tooltip />
+              <Legend />
+              <Area type="monotone" dataKey="total" name="Water Intake (ml)" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.2} />
+            </AreaChart>
+          </ResponsiveContainer>
+        ) : (
+          <p className="no-data-message">No water intake data available.</p>
         )}
       </div>
     </div>

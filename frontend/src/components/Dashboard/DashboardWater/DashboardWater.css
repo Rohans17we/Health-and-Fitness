@@ -1,0 +1,247 @@
+.dashboard-water {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 24px 0;
+  background: #fff;
+  color:#18181b;
+}
+body:not(.dark-mode) .dashboard-water {
+  background: #f8fafc;
+}
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.add-water-btn {
+  background: #ff8f00;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.add-water-btn:hover {
+  background: #0ea5e9;
+}
+.water-form {
+  background: #fff;
+  border: 2px solid #e0e7ff;
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+}
+body:not(.dark-mode) .water-form {
+  background: #fff;
+  border-color: #e0e7ff;
+}
+.water-form .form-group {
+  margin-bottom: 14px;
+}
+.water-form label {
+  font-weight: 500;
+  margin-bottom: 4px;
+  display: block;
+}
+.water-form input[type="number"],
+.water-form input[type="text"],
+.water-form input[type="datetime-local"] {
+  padding: 6px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  background: #fff;
+  color: #222;
+}
+.water-form button {
+  background: #38bdf8;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.water-form button[type="button"] {
+  background: #e0e7ff;
+  color: #222;
+  border: 1px solid #cbd5e1;
+}
+.water-form button[type="button"]:hover {
+  background: #c7d2fe;
+}
+.water-form .add-btn {
+  background: #38bdf8;
+  color: #fff;
+}
+.water-form .add-btn:hover {
+  background: #0ea5e9;
+}
+/* Consistent table container styling for all dashboards */
+.water-table-container, .food-table-container, .workout-table-container {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-top: 20px;
+  color: #222;
+  border: 1.5px solid #e0e7ff;
+}
+body.dark-mode .water-table-container, body.dark-mode .food-table-container, body.dark-mode .workout-table-container {
+  background-color: #18181b;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  border: 1.5px solid #23272f;
+  color: #e0e0e0;
+}
+
+.water-table, .food-table, .workout-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+.water-table th, .food-table th, .workout-table th,
+.water-table td, .food-table td, .workout-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1.5px solid #e0e7ff;
+  color: #222;
+}
+body.dark-mode .water-table th, body.dark-mode .food-table th, body.dark-mode .workout-table th,
+body.dark-mode .water-table td, body-dark-mode .food-table td, body-dark-mode .workout-table td {
+  border-bottom: 1.5px solid #23272f;
+  color: #e0e0e0;
+}
+
+.water-table th, .food-table th, .workout-table th {
+  background-color: #f5f5f5;
+  font-weight: 700;
+  color: #222;
+  letter-spacing: 0.5px;
+  font-size: 1.08em;
+}
+body.dark-mode .water-table th, body.dark-mode .food-table th, body-dark-mode .workout-table th {
+  background-color: #23272f;
+  color: #fff;
+}
+
+.water-table tr:hover, .food-table tr:hover, .workout-table tr:hover {
+  background: #e0e7ff;
+}
+body.dark-mode .water-table tr:hover, body-dark-mode .food-table tr:hover, body-dark-mode .workout-table tr:hover {
+  background: #23272f;
+}
+
+/* Consistent filter bar styling */
+.water-table-filters-container, .food-table-filters-container, .workout-table-filters-container {
+  background: #fff;
+  border: 1.5px solid #e0e7ff;
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+}
+body.dark-mode .water-table-filters-container, body-dark-mode .food-table-filters-container, body-dark-mode .workout-table-filters-container {
+  background: #18181b;
+  border: 1.5px solid #23272f;
+}
+.water-table-filters-label, .food-table-filters-label, .workout-table-filters-label {
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #222;
+  letter-spacing: 0.5px;
+}
+body.dark-mode .water-table-filters-label, body-dark-mode .food-table-filters-label, body-dark-mode .workout-table-filters-label {
+  color: #fff;
+}
+.water-table-filters, .food-table-filters, .workout-table-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  z-index: 2;
+}
+.water-table-filters input, .food-table-filters input, .workout-table-filters input,
+.water-table-filters select, .food-table-filters select, .workout-table-filters select {
+  padding: 7px 12px;
+  border-radius: 4px;
+  border: 1.5px solid #e0e7ff;
+  font-size: 1em;
+  min-width: 90px;
+  background: #fff;
+  color: #222;
+}
+body.dark-mode .water-table-filters input, body-dark-mode .food-table-filters input, body-dark-mode .workout-table-filters input,
+body-dark-mode .water-table-filters select, body-dark-mode .food-table-filters select, body-dark-mode .workout-table-filters select {
+  background: #23272f;
+  color: #e0e7ef;
+  border-color: #334155;
+}
+.no-water-logs {
+  text-align: center;
+  color: #888;
+  padding: 24px 0;
+}
+.error-message {
+  color: #e53935;
+  margin-bottom: 12px;
+}
+.loading {
+  text-align: center;
+  color: #888;
+  padding: 24px 0;
+}
+
+/* Dark mode styles */
+body.dark-mode .dashboard-water {
+  background: #18181b;
+}
+body.dark-mode .water-form {
+  background: #23272f;
+  border-color: #334155;
+}
+body.dark-mode .water-form label {
+  color: #e0e7ef;
+}
+body.dark-mode .water-form input,
+body.dark-mode .water-form input[type="number"],
+body.dark-mode .water-form input[type="text"],
+body.dark-mode .water-form input[type="datetime-local"] {
+  background: #23272f;
+  color: #e0e7ef;
+  border-color: #334155;
+}
+body.dark-mode .water-form button[type="button"] {
+  background: #334155;
+  color: #e0e7ef;
+}
+body.dark-mode .water-form .add-btn {
+  background: #38bdf8;
+  color: #fff;
+}
+body.dark-mode .water-table-container {
+  background: #23272f;
+}
+body.dark-mode .water-table th {
+  background: #18181b;
+  color: #e0e7ef;
+}
+body.dark-mode .water-table td {
+  color: #e0e7ef;
+}
+body.dark-mode .water-table tr:nth-child(even) {
+  background: #23272f;
+}
+body.dark-mode .no-water-logs {
+  color: #aaa;
+}
+body.dark-mode .error-message {
+  color: #f87171;
+}
+body.dark-mode .loading {
+  color: #aaa;
+}

@@ -1,0 +1,43 @@
+.water-table-filters-container {
+  background: #f8fafc;
+  border: 2px solid #e0e7ff;
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+}
+.water-table-filters-label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #444;
+}
+.water-table-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  z-index: 2;
+}
+.water-table-filters input[type="date"],
+.water-table-filters input[type="number"],
+.water-table-filters input[type="text"] {
+  padding: 6px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Dark mode styles */
+body.dark-mode .water-table-filters-container {
+  background: #23272f;
+  border-color: #334155;
+}
+body.dark-mode .water-table-filters-label {
+  color: #e0e7ef;
+}
+body.dark-mode .water-table-filters input[type="date"],
+body.dark-mode .water-table-filters input[type="number"],
+body.dark-mode .water-table-filters input[type="text"] {
+  background: #23272f;
+  color: #e0e7ef;
+  border-color: #334155;
+}
