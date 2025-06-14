@@ -3,6 +3,7 @@ import './DashboardWorkout.css';
 import WorkoutForm from './WorkoutForm/WorkoutForm';
 import WorkoutTable from './WorkoutTable/WorkoutTable';
 import WorkoutTableFilters from './WorkoutTable/WorkoutTableFilters';
+import WorkoutCharts from './WorkoutCharts/WorkoutCharts';
 import './WorkoutTable/WorkoutTableFilters.css';
 
 const defaultFilters = {
@@ -158,10 +159,13 @@ const DashboardWorkout = () => {
             Retry
           </button>
         </div>
-      )}
-      {showForm && (
+      )}      {showForm && (
         <WorkoutForm onSubmit={handleAddWorkout} onCancel={() => setShowForm(false)} />
       )}
+      
+      {/* Weekly Calories Chart */}
+      <WorkoutCharts />
+      
       {isLoading ? (
         <div className="loading">Loading workouts...</div>
       ) : (

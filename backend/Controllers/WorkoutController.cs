@@ -183,6 +183,59 @@ namespace Backend.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }        // GET: api/Workout/summary
+        [HttpGet("summary")]
+        public async Task<ActionResult<IEnumerable<object>>> GetWorkoutSummary([FromQuery] int days = 7)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null || !int.TryParse(userIdClaim.Value, out int userId))
+            {
+                return Unauthorized("Invalid token. Please log in again.");
+            }
+
+            // Calculate date range
+            var endDate = DateTime.Now.Date.AddDays(1); // Include today, so end at midnight tomorrow
+            var startDate = endDate.AddDays(-days);
+
+            // Get all workouts in the date range
+            var workouts = await _context.Workouts
+                .Where(w => w.UserId == userId && w.Date >= startDate && w.Date < endDate)
+                .ToListAsync();
+
+            // Group by date and calculate totals
+            var summary = new List<object>();
+            var groupedByDate = workouts.GroupBy(w => w.Date.Date);
+            
+            foreach(var group in groupedByDate)
+            {
+                double totalCalories = 0;
+                foreach(var workout in group)
+                {
+                    if (!string.IsNullOrEmpty(workout.DetailsJson))
+                    {
+                        try 
+                        {
+                            var details = System.Text.Json.JsonDocument.Parse(workout.DetailsJson).RootElement;
+                            if (details.TryGetProperty("caloriesBurned", out var caloriesElement))
+                            {
+                                if (double.TryParse(caloriesElement.ToString(), out double calories))
+                                {
+                                    totalCalories += calories;
+                                }
+                            }
+                        }
+                        catch 
+                        {
+                            // If parsing fails, just continue
+                        }
+                    }
+                }
+                  summary.Add(new { 
+                    date = group.Key.ToString("yyyy-MM-dd"),
+                    total = totalCalories
+                });            }
+            
+            return Ok(summary.OrderBy(s => ((dynamic)s).date).ToList());
         }
 
         private bool WorkoutExists(int id)

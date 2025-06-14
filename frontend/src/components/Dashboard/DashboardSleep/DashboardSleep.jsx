@@ -69,7 +69,6 @@ const DashboardSleep = () => {
     if (filters.hoursMax) filtered = filtered.filter(l => l.hoursSlept <= Number(filters.hoursMax));
     return filtered;
   };
-
   return (
     <div className="dashboard-sleep">
       <div className="dashboard-header">
@@ -78,10 +77,19 @@ const DashboardSleep = () => {
           {showForm ? 'Cancel' : 'Add Sleep Record'}
         </button>
       </div>
-      {showForm && <SleepForm onSubmit={handleAdd} onCancel={() => setShowForm(false)} />}
       {error && <div className="error-message">{error}</div>}
+      {showForm && <SleepForm onSubmit={handleAdd} onCancel={() => setShowForm(false)} />}
       <SleepTableFilters filters={filters} onChange={setFilters} />
-      {loading ? <div className="loading">Loading...</div> : <SleepTable logs={getFilteredLogs()} />}
+      {loading ? (
+        <div className="loading">Loading sleep records...</div>
+      ) : logs.length === 0 ? (
+        <div className="no-sleep-logs">
+          <h3>No sleep records found</h3>
+          <p>Start tracking your sleep by clicking the "Add Sleep Record" button above.</p>
+        </div>
+      ) : (
+        <SleepTable logs={getFilteredLogs()} />
+      )}
     </div>
   );
 };
