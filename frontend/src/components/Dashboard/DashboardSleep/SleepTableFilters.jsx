@@ -14,32 +14,37 @@ const SleepTableFilters = ({ filters, onChange }) => {
       hoursMax: '',
     });
   };
-
   return (
     <div className="filters-container">
       <h3>Filter Sleep Records</h3>
-      <div className="filters-row">
+    <div className="filters-row">
         <div className="filter-group">
           <label>From Date</label>
-          <input
-            type="date"
-            name="dateFrom"
-            value={filters.dateFrom}
-            onChange={handleChange}
-          />
+          <div className="date-input-container">
+            <input
+              type="date"
+              name="dateFrom"
+              value={filters.dateFrom}
+              onChange={handleChange}
+              className="date-input"
+            />
+          </div>
         </div>
         <div className="filter-group">
           <label>To Date</label>
-          <input
-            type="date"
-            name="dateTo"
-            value={filters.dateTo}
-            onChange={handleChange}
-          />
+          <div className="date-input-container">
+            <input
+              type="date"
+              name="dateTo"
+              value={filters.dateTo}
+              onChange={handleChange}
+              className="date-input"
+            />
+          </div>
         </div>
       </div>
       
-      <div className="filters-row">
+    <div className="filters-row">
         <div className="filter-group">
           <label>Min Hours</label>
           <input
@@ -47,9 +52,11 @@ const SleepTableFilters = ({ filters, onChange }) => {
             name="hoursMin"
             min="0"
             max="24"
+            step="0.5"
             value={filters.hoursMin}
             onChange={handleChange}
             placeholder="e.g. 6"
+            className="number-input"
           />
         </div>
         <div className="filter-group">
@@ -59,9 +66,11 @@ const SleepTableFilters = ({ filters, onChange }) => {
             name="hoursMax"
             min="0"
             max="24"
+            step="0.5"
             value={filters.hoursMax}
             onChange={handleChange}
             placeholder="e.g. 10"
+            className="number-input"
           />
         </div>
       </div>
