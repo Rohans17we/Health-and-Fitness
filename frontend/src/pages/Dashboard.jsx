@@ -6,6 +6,7 @@ import DashboardWorkout from "../components/Dashboard/DashboardWorkout/Dashboard
 import DashboardFood from "../components/Dashboard/DashboardFood/DashboardFood";
 import DashboardAnalytics from "../components/Dashboard/DashboardAnalytics/DashboardAnalytics";
 import DashboardWater from "../components/Dashboard/DashboardWater/DashboardWater";
+import DashboardSleep from "../components/Dashboard/DashboardSleep/DashboardSleep";
 import "../styles/Dashboard.css";
 
 const Dashboard = () => {
@@ -51,11 +52,10 @@ const Dashboard = () => {
       case "/dashboard/workout":
         return <DashboardWorkout />;
       case "/dashboard/food":
-        return <DashboardFood />;
-      case "/dashboard/water":
+        return <DashboardFood />;      case "/dashboard/water":
         return <DashboardWater />;
       case "/dashboard/sleep":
-        return <div className="coming-soon">Sleep Record tracking coming soon!</div>;
+        return <DashboardSleep />;
       case "/dashboard/analytics":
         return <DashboardAnalytics />;
       case "/dashboard/themes":
