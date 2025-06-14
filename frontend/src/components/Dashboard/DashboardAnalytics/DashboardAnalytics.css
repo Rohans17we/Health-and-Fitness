@@ -191,147 +191,54 @@
   border-left: 6px solid #82ca9d;
 }
 
-/* Macro summary card styles */
-.macros {
-  background: linear-gradient(120deg, #f8fafc 60%, #e0e7ff 100%);
-  border-left: 6px solid #ffc658;
-  margin-bottom: 0;
+/* Sleep summary card styles */
+.summary-card.sleep {
+  border-left: 5px solid #8884d8;
+  background: linear-gradient(135deg, rgba(136, 132, 216, 0.1) 0%, rgba(230, 230, 250, 0.2) 100%);
 }
 
-/* Water intake card styles */
-.summary-card.water {
-  background: linear-gradient(120deg, #f8fafc 60%, #e0e7ff 100%);
-  border-left: 6px solid #38bdf8;
-  margin-bottom: 0;
+body.dark-mode .summary-card.sleep {
+  background: linear-gradient(135deg, rgba(136, 132, 216, 0.15) 0%, rgba(60, 60, 80, 0.2) 100%);
+  border-left: 5px solid #a39dff;
 }
 
-body.dark-mode .summary-card.water {
-  background: linear-gradient(120deg, #23272f 60%, #2d2d2d 100%);
-  border-left: 6px solid #38bdf8;
-  color: #e0e0e0;
+.sleep-metrics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.water-intake-total {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #22223b;
+.sleep-stats {
+  display: flex;
+  gap: 15px;
   margin-top: 10px;
-  letter-spacing: 1px;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-body.dark-mode .water-intake-total {
-  color: #e0e0e0;
+.sleep-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 8px;
+  min-width: 80px;
 }
 
-body.dark-mode .macros {
-  background: linear-gradient(120deg, #23272f 60%, #2d2d2d 100%);
-  border-left: 6px solid #ffc658;
-  color: #e0e0e0;
-}
-
-/* Animated numbers */
-.animated-number {
-  font-size: 2.5rem;
+.sleep-stat-value {
+  font-size: 1.5rem;
   font-weight: bold;
-  color: #22223b;
-  margin-top: 10px;
-  letter-spacing: 1px;
-  transition: color 0.3s;
+  margin-bottom: 2px;
 }
 
-/* Fade-in animation for charts */
-.chart-card {
-  animation: fadeInUp 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+.sleep-stat-label {
+  font-size: 0.75rem;
+  color: #666;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Dark mode styles */
-body.dark-mode .analytics-container {
-  background-color: var(--bg-color, #1a1a1a);
-}
-
-body.dark-mode .analytics-container h1 {
-  color: #ffffff;
-}
-
-body.dark-mode .analytics-card {
-  --card-bg: #2d2d2d;
-  --text-color: #e0e0e0;
-  --heading-color: #ffffff;
-  --border-color: #444;
-  --positive-color: #81c784;
-  --negative-color: #e57373;
-  --chart-bar-color: #81c784;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-body.dark-mode .analytics-card {
-  background: var(--card-bg, #2d2d2d);
-  color: var(--text-color, #e0e0e0);
-}
-
-body.dark-mode .analytics-card h3,
-body.dark-mode .analytics-card .analytics-card-title {
-  color: #fff;
-}
-
-body.dark-mode .no-data-message {
-  --card-bg: #2d2d2d;
-  --text-color: #e0e0e0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-body.dark-mode .analytics-loading, 
-body.dark-mode .analytics-error {
-  color: #e0e0e0;
-}
-
-body.dark-mode .analytics-card .calories-consumed {
-  color: #38bdf8;
-  font-weight: bold;
-  font-size: 2.8rem;
-  letter-spacing: 1px;
-}
-
-body.dark-mode .analytics-card .calories-burned {
-  color: #f87171;
-  font-weight: bold;
-  font-size: 2.8rem;
-  letter-spacing: 1px;
-}
-
-/* Dark mode styles for Recharts */
-body.dark-mode .recharts-cartesian-grid-horizontal line,
-body.dark-mode .recharts-cartesian-grid-vertical line {
-  stroke: #444;
-}
-
-body.dark-mode .recharts-text {
-  fill: #e0e0e0;
-}
-
-body.dark-mode .recharts-tooltip-wrapper .recharts-default-tooltip {
-  background-color: #333 !important;
-  border-color: #555 !important;
-}
-
-body.dark-mode .recharts-tooltip-wrapper .recharts-default-tooltip .recharts-tooltip-label,
-body.dark-mode .recharts-tooltip-wrapper .recharts-default-tooltip .recharts-tooltip-item {
-  color: #e0e0e0 !important;
-}
-
-body.dark-mode .recharts-legend-item-text {
-  color: #e0e0e0 !important;
+body.dark-mode .sleep-stat-label {
+  color: #aaa;
 }
 
 /* Macro summary card styles */
@@ -429,4 +336,83 @@ body.dark-mode .macros .macro-row {
   .no-data-message {
     padding: 25px;
   }
+}
+
+/* Dark mode styles */
+body.dark-mode .analytics-container {
+  background-color: var(--bg-color, #1a1a1a);
+}
+
+body.dark-mode .analytics-container h1 {
+  color: #ffffff;
+}
+
+body.dark-mode .analytics-card {
+  --card-bg: #2d2d2d;
+  --text-color: #e0e0e0;
+  --heading-color: #ffffff;
+  --border-color: #444;
+  --positive-color: #81c784;
+  --negative-color: #e57373;
+  --chart-bar-color: #81c784;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .analytics-card {
+  background: var(--card-bg, #2d2d2d);
+  color: var(--text-color, #e0e0e0);
+}
+
+body.dark-mode .analytics-card h3,
+body.dark-mode .analytics-card .analytics-card-title {
+  color: #fff;
+}
+
+body.dark-mode .no-data-message {
+  --card-bg: #2d2d2d;
+  --text-color: #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .analytics-loading, 
+body.dark-mode .analytics-error {
+  color: #e0e0e0;
+}
+
+body.dark-mode .analytics-card .calories-consumed {
+  color: #38bdf8;
+  font-weight: bold;
+  font-size: 2.8rem;
+  letter-spacing: 1px;
+}
+
+body.dark-mode .analytics-card .calories-burned {
+  color: #f87171;
+  font-weight: bold;
+  font-size: 2.8rem;
+  letter-spacing: 1px;
+}
+
+/* Dark mode styles for Recharts */
+body.dark-mode .recharts-cartesian-grid-horizontal line,
+body.dark-mode .recharts-cartesian-grid-vertical line {
+  stroke: #444;
+}
+
+body.dark-mode .recharts-text {
+  fill: #e0e0e0;
+}
+
+body.dark-mode .recharts-tooltip-wrapper .recharts-default-tooltip {
+  background-color: #333 !important;
+  border-color: #555 !important;
+}
+
+body.dark-mode .recharts-tooltip-wrapper .recharts-default-tooltip .recharts-tooltip-label,
+body.dark-mode .recharts-tooltip-wrapper .recharts-default-tooltip .recharts-tooltip-item {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .recharts-legend-item-text {
+  color: #e0e0e0 !important;
 }

@@ -24,10 +24,10 @@ const AnimatedNumber = ({ value }) => {
 
 const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff7f50', '#a4de6c', '#d0ed57', '#8dd1e1'];
 
-const DashboardAnalytics = () => {
-  const [calorieComparisonData, setCalorieComparisonData] = useState([]);
+const DashboardAnalytics = () => {  const [calorieComparisonData, setCalorieComparisonData] = useState([]);
   const [nutritionSummary, setNutritionSummary] = useState([]);
   const [waterSummary, setWaterSummary] = useState({ total: 0, daily: [] });
+  const [sleepSummary, setSleepSummary] = useState({ totalHoursSlept: 0, averageHoursSlept: 0, currentStreak: 0, dailySleep: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const token = localStorage.getItem('token');
@@ -74,10 +74,18 @@ const DashboardAnalytics = () => {
         // Fetch water intake summary
         const waterSummaryResponse = await fetch('http://localhost:5057/api/Analytics/water-summary', {
           headers: { 'Authorization': `Bearer ${token}` }
-        });
-        if (waterSummaryResponse.ok) {
+        });        if (waterSummaryResponse.ok) {
           const waterSummaryResult = await waterSummaryResponse.json();
           setWaterSummary(waterSummaryResult);
+        }
+        
+        // Fetch sleep summary
+        const sleepSummaryResponse = await fetch('http://localhost:5057/api/Analytics/sleep-summary', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (sleepSummaryResponse.ok) {
+          const sleepSummaryResult = await sleepSummaryResponse.json();
+          setSleepSummary(sleepSummaryResult);
         }
       } catch (err) {
         console.error('Error fetching data:', err);
@@ -136,11 +144,29 @@ const DashboardAnalytics = () => {
             <span>Fiber: <b>{totalMacros.fiber.toFixed(1)}g</b></span>
             <span>Sugar: <b>{totalMacros.sugar.toFixed(1)}g</b></span>
           </div>
-        </div>
-        <div className="analytics-card summary-card water">
+        </div>        <div className="analytics-card summary-card water">
           <h3>Total Water Intake</h3>
           <span className="water-intake-total"><AnimatedNumber value={waterSummary.total} /></span>
           <span style={{fontSize:'1rem',color:'#38bdf8',fontWeight:500}}>ml</span>
+        </div>
+        <div className="analytics-card summary-card sleep">
+          <h3>Sleep Summary</h3>
+          <div className="sleep-metrics">
+            <div className="sleep-stats">
+              <div className="sleep-stat">
+                <div className="sleep-stat-value"><AnimatedNumber value={Math.round(sleepSummary.totalHoursSlept)} /></div>
+                <div className="sleep-stat-label">Total Hours</div>
+              </div>
+              <div className="sleep-stat">
+                <div className="sleep-stat-value">{sleepSummary.averageHoursSlept}</div>
+                <div className="sleep-stat-label">Daily Average</div>
+              </div>
+              <div className="sleep-stat">
+                <div className="sleep-stat-value">{sleepSummary.currentStreak}</div>
+                <div className="sleep-stat-label">Day Streak</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       {/* Area Chart for trends */}
@@ -231,8 +257,7 @@ const DashboardAnalytics = () => {
         ) : (
           <p className="no-data-message">No meal type data available.</p>
         )}
-      </div>
-      {/* Water Intake Trend Chart */}
+      </div>      {/* Water Intake Trend Chart */}
       <div className="analytics-card chart-card">
         <h3>Water Intake Trend</h3>
         {waterSummary.daily && waterSummary.daily.length > 0 ? (
@@ -248,6 +273,32 @@ const DashboardAnalytics = () => {
           </ResponsiveContainer>
         ) : (
           <p className="no-data-message">No water intake data available.</p>
+        )}
+      </div>
+
+      {/* Sleep Hours Trend Chart */}
+      <div className="analytics-card chart-card">
+        <h3>Sleep Hours Trend</h3>
+        {sleepSummary.dailySleep && sleepSummary.dailySleep.length > 0 ? (
+          <ResponsiveContainer width="100%" height={300}>
+            <AreaChart data={sleepSummary.dailySleep} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+              <XAxis dataKey="formattedDate" />
+              <YAxis domain={[0, 'dataMax + 2']} />
+              <CartesianGrid strokeDasharray="3 3" />
+              <Tooltip />
+              <Legend />
+              <Area 
+                type="monotone" 
+                dataKey="hoursSlept" 
+                name="Hours Slept" 
+                stroke="#8884d8" 
+                fill="#8884d8" 
+                fillOpacity={0.2} 
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        ) : (
+          <p className="no-data-message">No sleep tracking data available.</p>
         )}
       </div>
     </div>

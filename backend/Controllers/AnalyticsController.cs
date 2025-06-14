@@ -219,5 +219,84 @@ namespace Backend.Controllers
 
             return Ok(new { total = totalAll, daily = summary });
         }
+
+        // GET: api/Analytics/sleep-summary
+        [HttpGet("sleep-summary")]
+        public async Task<IActionResult> GetSleepSummary([FromQuery] int days = 30)
+        {
+            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+            if (userEmail == null) return Unauthorized("Invalid token. Please log in again.");
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
+            if (user == null) return NotFound("User not found.");
+
+            // Get date range - last 30 days by default
+            var endDate = DateTime.UtcNow;
+            var startDate = endDate.AddDays(-days);
+
+            // Fetch sleep records in date range
+            var sleepData = await _context.SleepTrackings
+                .Where(s => s.UserId == user.Id && s.Date >= startDate && s.Date <= endDate)
+                .OrderBy(s => s.Date)
+                .ToListAsync();
+
+            // Calculate total and average stats
+            double totalHoursSlept = sleepData.Sum(s => s.HoursSlept);
+            double avgHoursSlept = sleepData.Count > 0 ? totalHoursSlept / sleepData.Count : 0;
+            
+            // Get daily sleep hours for chart
+            var dailySleep = sleepData
+                .GroupBy(s => s.Date.Date)
+                .OrderBy(g => g.Key)
+                .Select(g => new {
+                    Date = g.Key.ToString("yyyy-MM-dd"),
+                    FormattedDate = g.Key.ToString("MMM dd"),
+                    HoursSlept = g.Sum(s => s.HoursSlept)
+                })
+                .ToList();
+                
+            // Calculate streak
+            int currentStreak = 0;
+            var dates = sleepData.Select(s => s.Date.Date).Distinct().OrderByDescending(d => d).ToList();
+            if (dates.Any())
+            {
+                var today = DateTime.UtcNow.Date;
+                var yesterday = today.AddDays(-1);
+                
+                // Check if tracked today
+                if (dates.Contains(today))
+                {
+                    currentStreak = 1;
+                    var checkDate = yesterday;
+                    
+                    // Count consecutive days
+                    while (dates.Contains(checkDate))
+                    {
+                        currentStreak++;
+                        checkDate = checkDate.AddDays(-1);
+                    }
+                }
+                // If not tracked today, check from yesterday
+                else if (dates.Contains(yesterday)) 
+                {
+                    currentStreak = 1;
+                    var checkDate = yesterday.AddDays(-1);
+                    
+                    while (dates.Contains(checkDate))
+                    {
+                        currentStreak++;
+                        checkDate = checkDate.AddDays(-1);
+                    }
+                }
+            }
+
+            return Ok(new {
+                TotalRecords = sleepData.Count,
+                TotalHoursSlept = totalHoursSlept,
+                AverageHoursSlept = Math.Round(avgHoursSlept, 1),
+                CurrentStreak = currentStreak,
+                DailySleep = dailySleep
+            });
+        }
     }
 }
