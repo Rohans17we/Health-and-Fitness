@@ -254,6 +254,52 @@ body.dark-mode .macros {
   color: #e0e0e0;
 }
 
+/* Card value styles */
+.calories-consumed, .calories-burned, .calories-value {
+  font-weight: bold;
+  font-size: 2.8rem;
+  letter-spacing: 1px;
+  display: block;
+  text-align: center;
+}
+
+.calories-consumed {
+  color: #8884d8;
+}
+
+.calories-burned {
+  color: #82ca9d;
+}
+
+.calories-value {
+  color: #38bdf8;
+}
+
+.unit-label {
+  font-size: 1rem;
+  color: #38bdf8;
+  font-weight: 500;
+  display: block;
+  text-align: center;
+  margin-top: -5px;
+}
+
+/* Water intake summary card styles */
+.summary-card.water {
+  border-left: 6px solid #38bdf8;
+  background: linear-gradient(135deg, #f8fafc 60%, #e0f2fe 100%);
+}
+
+body.dark-mode .summary-card.water {
+  background: linear-gradient(135deg, #23272f 60%, #082f49 100%);
+  border-left: 6px solid #38bdf8;
+  color: #e0e0e0;
+}
+
+/* Styles now handled by .calories-value */
+
+/* Styles now handled by .calories-value */
+
 .macro-row {
   display: flex;
   flex-wrap: wrap;
@@ -380,17 +426,19 @@ body.dark-mode .analytics-error {
 }
 
 body.dark-mode .analytics-card .calories-consumed {
-  color: #38bdf8;
-  font-weight: bold;
-  font-size: 2.8rem;
-  letter-spacing: 1px;
+  color: #a39dff;
 }
 
 body.dark-mode .analytics-card .calories-burned {
-  color: #f87171;
-  font-weight: bold;
-  font-size: 2.8rem;
-  letter-spacing: 1px;
+  color: #82ca9d;
+}
+
+body.dark-mode .analytics-card .calories-value {
+  color: #0ea5e9;
+}
+
+body.dark-mode .unit-label {
+  color: #0ea5e9;
 }
 
 /* Dark mode styles for Recharts */
@@ -415,4 +463,21 @@ body.dark-mode .recharts-tooltip-wrapper .recharts-default-tooltip .recharts-too
 
 body.dark-mode .recharts-legend-item-text {
   color: #e0e0e0 !important;
+}
+
+.water-metrics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.water-unit {
+  font-size: 1rem;
+  color: #38bdf8;
+  font-weight: 500;
+  margin-top: -5px;
+}
+
+body.dark-mode .water-unit {
+  color: #0ea5e9;
 }

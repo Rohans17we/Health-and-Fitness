@@ -126,8 +126,7 @@ const DashboardAnalytics = () => {  const [calorieComparisonData, setCalorieComp
   return (
     <div className="analytics-container">
       <h1>Your Fitness Analytics</h1>
-      <div className="analytics-summary">
-        <div className="analytics-card summary-card consumed">
+      <div className="analytics-summary">        <div className="analytics-card summary-card consumed">
           <h3>Total Calories Consumed</h3>
           <span className="calories-consumed"><AnimatedNumber value={totalConsumed} /></span>
         </div>
@@ -146,8 +145,8 @@ const DashboardAnalytics = () => {  const [calorieComparisonData, setCalorieComp
           </div>
         </div>        <div className="analytics-card summary-card water">
           <h3>Total Water Intake</h3>
-          <span className="water-intake-total"><AnimatedNumber value={waterSummary.total} /></span>
-          <span style={{fontSize:'1rem',color:'#38bdf8',fontWeight:500}}>ml</span>
+          <span className="calories-value"><AnimatedNumber value={waterSummary.total} /></span>
+          <span className="unit-label">ml</span>
         </div>
         <div className="analytics-card summary-card sleep">
           <h3>Sleep Summary</h3>
