@@ -9,7 +9,6 @@ const defaultFilters = {
   dateTo: '',
   hoursMin: '',
   hoursMax: '',
-  quality: '',
 };
 
 const DashboardSleep = () => {
@@ -64,12 +63,10 @@ const DashboardSleep = () => {
   };
 
   const getFilteredLogs = () => {
-    let filtered = [...logs];
-    if (filters.dateFrom) filtered = filtered.filter(l => l.date.slice(0,10) >= filters.dateFrom);
+    let filtered = [...logs];    if (filters.dateFrom) filtered = filtered.filter(l => l.date.slice(0,10) >= filters.dateFrom);
     if (filters.dateTo) filtered = filtered.filter(l => l.date.slice(0,10) <= filters.dateTo);
     if (filters.hoursMin) filtered = filtered.filter(l => l.hoursSlept >= Number(filters.hoursMin));
     if (filters.hoursMax) filtered = filtered.filter(l => l.hoursSlept <= Number(filters.hoursMax));
-    if (filters.quality) filtered = filtered.filter(l => l.sleepQuality === filters.quality);
     return filtered;
   };
 

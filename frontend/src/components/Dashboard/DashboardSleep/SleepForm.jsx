@@ -1,27 +1,60 @@
-import React, { useState } from 'react';
-
-const sleepQualities = ['Poor', 'Average', 'Good'];
+import React, { useState, useEffect } from 'react';
 
 const SleepForm = ({ onSubmit, onCancel }) => {
-  const [hoursSlept, setHoursSlept] = useState('');
-  const [sleepQuality, setSleepQuality] = useState('Average');
+  const [sleepStart, setSleepStart] = useState('');
+  const [sleepEnd, setSleepEnd] = useState('');
   const [date, setDate] = useState(new Date().toISOString().slice(0,10));
+  const [hoursSlept, setHoursSlept] = useState('');
+  
+  useEffect(() => {
+    if (sleepStart && sleepEnd) {
+      try {
+        const start = new Date(`${date}T${sleepStart}`);
+        const end = new Date(`${date}T${sleepEnd}`);
+        
+        // If end time is earlier than start time, assume it's the next day
+        if (end < start) {
+          const nextDay = new Date(end);
+          nextDay.setDate(nextDay.getDate() + 1);
+          end.setTime(nextDay.getTime());
+        }
+        
+        // Calculate hours difference
+        const diffMs = end - start;
+        const diffHrs = diffMs / (1000 * 60 * 60);
+        setHoursSlept(diffHrs.toFixed(1));
+      } catch (error) {
+        setHoursSlept('');
+      }
+    }
+  }, [sleepStart, sleepEnd, date]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!hoursSlept || isNaN(hoursSlept) || Number(hoursSlept) <= 0 || Number(hoursSlept) > 24) {
-      alert('Please enter a valid number of hours (between 1 and 24)');
+    if (!sleepStart || !sleepEnd) {
+      alert('Please select both sleep start and end times');
       return;
     }
     
+    // Create date objects for the start and end times
+    const sleepStartDateTime = new Date(`${date}T${sleepStart}`);
+    let sleepEndDateTime = new Date(`${date}T${sleepEnd}`);
+    
+    // If end time is earlier than start time, assume it's the next day
+    if (sleepEndDateTime < sleepStartDateTime) {
+      sleepEndDateTime.setDate(sleepEndDateTime.getDate() + 1);
+    }
+    
     onSubmit({
-      hoursSlept: Number(hoursSlept),
-      sleepQuality,
+      sleepStart: sleepStartDateTime.toISOString(),
+      sleepEnd: sleepEndDateTime.toISOString(),
+      hoursSlept: parseFloat(hoursSlept),
       date: new Date(date).toISOString()
     });
     
+    setSleepStart('');
+    setSleepEnd('');
     setHoursSlept('');
-    setSleepQuality('Average');
   };
 
   return (
@@ -36,38 +69,39 @@ const SleepForm = ({ onSubmit, onCancel }) => {
         />
       </div>
       
-      <div className="form-group">
-        <label>Hours Slept</label>
-        <input
-          type="number"
-          min="0.5"
-          max="24"
-          step="0.5"
-          value={hoursSlept}
-          onChange={e => setHoursSlept(e.target.value)}
-          placeholder="e.g. 8"
-        />
+      <div className="form-row">
+        <div className="form-group half">
+          <label>Sleep Start Time</label>
+          <input
+            type="time"
+            value={sleepStart}
+            onChange={e => setSleepStart(e.target.value)}
+          />
+        </div>
+        
+        <div className="form-group half">
+          <label>Sleep End Time</label>
+          <input
+            type="time"
+            value={sleepEnd}
+            onChange={e => setSleepEnd(e.target.value)}
+          />
+        </div>
       </div>
       
       <div className="form-group">
-        <label>Sleep Quality</label>
-        <div className="sleep-quality-selector">
-          {sleepQualities.map(quality => (
-            <div 
-              key={quality} 
-              className={`quality-option ${quality.toLowerCase()} ${sleepQuality === quality ? 'selected' : ''}`}
-              onClick={() => setSleepQuality(quality)}
-            >
-              {quality}
-            </div>
-          ))}
-        </div>
+        <label>Hours Slept (calculated)</label>
+        <input
+          type="text"
+          value={hoursSlept ? `${hoursSlept} hours` : ''}
+          readOnly
+          className="readonly-input"
+        />
       </div>
       
       <div style={{ display: 'flex', gap: 12, marginTop: 12 }}>
         <button type="submit" className="add-btn">Add</button>
-        <button type="button" onClick={onCancel}>Cancel</button>
-      </div>
+        <button type="button" onClick={onCancel}>Cancel</button>      </div>
     </form>
   );
 };

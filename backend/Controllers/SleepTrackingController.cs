@@ -54,10 +54,9 @@ namespace Backend.Controllers
 
             var existingLog = _context.SleepTrackings.Find(id);
             if (existingLog == null) return NotFound();
-            if (existingLog.UserId != userId) return Forbid();
-
+            if (existingLog.UserId != userId) return Forbid();            existingLog.SleepStart = sleepLog.SleepStart;
+            existingLog.SleepEnd = sleepLog.SleepEnd;
             existingLog.HoursSlept = sleepLog.HoursSlept;
-            existingLog.SleepQuality = sleepLog.SleepQuality;
             existingLog.Date = sleepLog.Date;
 
             _context.SaveChanges();

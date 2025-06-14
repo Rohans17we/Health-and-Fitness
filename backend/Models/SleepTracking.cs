@@ -6,13 +6,12 @@ namespace Backend.Models
     public class SleepTracking
     {
         [Key]
-        public int Id { get; set; }
-
-        [Required]
+        public int Id { get; set; }        [Required]
         public int UserId { get; set; }
 
-        public int HoursSlept { get; set; }
-        public string SleepQuality { get; set; } // Poor, Average, Good
+        public DateTime SleepStart { get; set; }
+        public DateTime SleepEnd { get; set; }
+        public double HoursSlept { get; set; }
 
         public DateTime Date { get; set; } = DateTime.UtcNow;
 

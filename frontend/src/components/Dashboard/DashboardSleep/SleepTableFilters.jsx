@@ -12,7 +12,6 @@ const SleepTableFilters = ({ filters, onChange }) => {
       dateTo: '',
       hoursMin: '',
       hoursMax: '',
-      quality: '',
     });
   };
 
@@ -64,15 +63,6 @@ const SleepTableFilters = ({ filters, onChange }) => {
             onChange={handleChange}
             placeholder="e.g. 10"
           />
-        </div>
-        <div className="filter-group">
-          <label>Sleep Quality</label>
-          <select name="quality" value={filters.quality} onChange={handleChange}>
-            <option value="">All</option>
-            <option value="Poor">Poor</option>
-            <option value="Average">Average</option>
-            <option value="Good">Good</option>
-          </select>
         </div>
       </div>
       

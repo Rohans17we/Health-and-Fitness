@@ -3,13 +3,9 @@ import React from 'react';
 const SleepTable = ({ logs }) => {
   if (!logs.length) return <div className="no-sleep-logs">No sleep records yet.</div>;
 
-  const getQualityClass = (quality) => {
-    switch(quality.toLowerCase()) {
-      case 'poor': return 'poor';
-      case 'average': return 'average';
-      case 'good': return 'good';
-      default: return '';
-    }
+  const formatTime = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
   return (
@@ -19,8 +15,9 @@ const SleepTable = ({ logs }) => {
         <thead>
           <tr>
             <th>Date</th>
+            <th>Sleep Start</th>
+            <th>Sleep End</th>
             <th>Hours Slept</th>
-            <th>Sleep Quality</th>
           </tr>
         </thead>
         <tbody>
@@ -29,12 +26,9 @@ const SleepTable = ({ logs }) => {
             return (
               <tr key={log.id}>
                 <td>{date.toLocaleDateString()}</td>
-                <td>{log.hoursSlept} hrs</td>
-                <td>
-                  <span className={`quality-badge ${getQualityClass(log.sleepQuality)}`}>
-                    {log.sleepQuality}
-                  </span>
-                </td>
+                <td>{formatTime(log.sleepStart)}</td>
+                <td>{formatTime(log.sleepEnd)}</td>
+                <td>{log.hoursSlept.toFixed(1)} hrs</td>
               </tr>
             );
           })}
