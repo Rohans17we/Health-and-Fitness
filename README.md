@@ -11,6 +11,16 @@ A full-stack health and fitness tracking application with a .NET backend and a R
 - Responsive dashboard and landing pages
 - Flexible database: supports SQL Server or SQLite
 
+## Development Status
+- **Frontend**: 
+  - Landing page, authentication, and basic dashboard structure implemented
+  - Dashboard Home currently shows a welcome placeholder, with plans for widget-based metrics display
+  - Individual tracking sections (workout, nutrition, etc.) in active development
+- **Backend**: 
+  - API structure complete
+  - Authentication system implemented
+  - Core data models and endpoints available
+
 ---
 
 ## Prerequisites

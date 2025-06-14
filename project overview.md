@@ -100,6 +100,7 @@ This Health and Fitness application is a full-stack solution designed to help us
 - **Dashboard**: Main user area, sidebar navigation, protected by login
     - Subroutes: Home, Workout, Food, Water, Sleep, Analytics, Themes, Settings
     - Loads user data from localStorage, fetches data from backend
+    - Dashboard Home offers a welcoming placeholder with future plans for widget-based health metrics display
 - **Pricing**: Plan comparison, feature highlights, upgrade CTAs
 - **Blog/About**: Informational pages
 
@@ -148,6 +149,16 @@ This Health and Fitness application is a full-stack solution designed to help us
 
 ## Extensibility & Future Improvements
 - Add more analytics (progress charts, trends)
+- Implement widget-based Dashboard Home with:
+  - Daily activity metrics
+  - Nutrition summary
+  - Water intake tracking
+  - Sleep quality insights
+  - Recent workouts
+  - Health metrics (weight, BMI)
+  - Achievement tracking
+  - Goal progress
+- Enhance settings page for better user customization
 - Integrate with wearable devices (Google Fit, Apple Health)
 - Add push notifications (reminders)
 - Expand blog and content features
