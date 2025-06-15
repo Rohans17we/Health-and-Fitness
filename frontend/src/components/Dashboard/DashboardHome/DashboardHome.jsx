@@ -82,7 +82,10 @@ const DashboardHome = ({ user }) => {  const [isLoading, setIsLoading] = useStat
   const fetchHealthMetricsData = async (token) => {
     setMetricsLoading(true);
     
-    try {      // Create promises for all the API calls
+    try {
+      console.log("Fetching health metrics data...");
+      
+      // Create promises for all the API calls
       const promises = [
         fetchTodaysNutrition(token),
         fetchTodaysWorkouts(token),
@@ -91,25 +94,31 @@ const DashboardHome = ({ user }) => {  const [isLoading, setIsLoading] = useStat
         fetchWeeklyNutrition(token),
         fetchWeeklyWorkouts(token)
       ];
-        // Wait for all API calls to complete
+        
+      // Wait for all API calls to complete
       const [nutrition, workouts, sleep, water, weeklyNutrition, weeklyWorkouts] = await Promise.all(promises);
       
-    // Extract calorie goal from user profile if available
-  const calorieGoal = userProfile?.calorieGoal || 2500; // Use user's goal or default to 2500
-  setHealthMetrics({
-        caloriesConsumed: nutrition.totalCalories || 0, // No conversion, use Cal as stored
-        caloriesBurned: workouts.totalCaloriesBurned || 0, // No conversion, use Cal as stored
+      console.log("All health metrics fetched successfully");
+      console.log("Weekly nutrition data:", weeklyNutrition);
+      console.log("Weekly workout data:", weeklyWorkouts);
+      
+      // Extract calorie goal from user profile if available
+      const calorieGoal = userProfile?.calorieGoal || 2500; // Use user's goal or default to 2500
+      
+      setHealthMetrics({
+        caloriesConsumed: nutrition.totalCalories || 0,
+        caloriesBurned: workouts.totalCaloriesBurned || 0,
         sleepHours: sleep.hours || 0,
         sleepMinutes: sleep.minutes || 0,
-        waterIntake: water.totalAmountML || 0, // Use milliliters instead of liters
-        waterGoal: 3000, // Default goal is 3000mL (3L converted to mL)
-        calorieGoal: calorieGoal, // Use user's goal or default
+        waterIntake: water.totalAmountML || 0,
+        waterGoal: 3000, // Default goal is 3000mL
+        calorieGoal: calorieGoal,
         weeklyCaloriesConsumed: weeklyNutrition || [],
         weeklyCaloriesBurned: weeklyWorkouts || []
       });
-        } catch (err) {
+    } catch (err) {
       console.error('Error fetching health metrics:', err);
-      // Use fallback data if there's an error
+      // Use fallback data if there's an error, but still provide empty arrays for weekly data
       setHealthMetrics({
         caloriesConsumed: 0,
         caloriesBurned: 0,
@@ -277,31 +286,44 @@ const DashboardHome = ({ user }) => {  const [isLoading, setIsLoading] = useStat
       const data = await response.json();
       
       // Create an array for the past 7 days, starting from Monday
-      const today = new Date();
-      const currentDay = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
       const weeklyData = Array(7).fill(0);
+      const today = new Date();
       
-      // Calculate the date of Monday this week
+      // Ensure we're working with the current week
+      // Get the start of the week (Monday)
+      const currentDay = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
       const mondayOffset = currentDay === 0 ? 6 : currentDay - 1;
       const monday = new Date(today);
       monday.setDate(today.getDate() - mondayOffset);
       
-      // Fill array with data from API
+      // Set time to start of day to avoid timezone issues
+      monday.setHours(0, 0, 0, 0);
+      
+      console.log("Week starting Monday:", monday.toISOString());
+      
+      // Map data to the correct days of the week (Monday-based indexing)
       data.forEach(dayData => {
+        // Parse the date and set time to midnight for accurate comparison
         const entryDate = new Date(dayData.date);
-        // Compare if this entry is from current week
+        entryDate.setHours(0, 0, 0, 0);
+        
+        // Only include data from this week
         if (entryDate >= monday && entryDate <= today) {
-          // Calculate day index (0 = Monday)
+          // Calculate day index (0 = Monday, 6 = Sunday)
           const dayIndex = entryDate.getDay() === 0 ? 6 : entryDate.getDay() - 1;
+          
+          console.log(`Nutrition data for ${entryDate.toISOString().split('T')[0]} (index ${dayIndex}): ${dayData.total}`);
+          
           weeklyData[dayIndex] = dayData.total;
         }
       });
       
+      console.log("Weekly nutrition data:", weeklyData);
       return weeklyData;
     } catch (err) {
       console.error('Error fetching weekly nutrition data:', err);
-      // Return sample data that looks realistic
-      return [1750, 2100, 1920, 2300, 1840, 1650, 1420]; 
+      // Return empty data instead of fake data to avoid confusion
+      return Array(7).fill(0);
     }
   };
   
@@ -320,31 +342,43 @@ const DashboardHome = ({ user }) => {  const [isLoading, setIsLoading] = useStat
       const data = await response.json();
       
       // Create an array for the past 7 days, starting from Monday
-      const today = new Date();
-      const currentDay = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
       const weeklyData = Array(7).fill(0);
+      const today = new Date();
       
-      // Calculate the date of Monday this week
+      // Get the start of the week (Monday)
+      const currentDay = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
       const mondayOffset = currentDay === 0 ? 6 : currentDay - 1;
       const monday = new Date(today);
       monday.setDate(today.getDate() - mondayOffset);
       
-      // Fill array with data from API
+      // Set time to start of day to avoid timezone issues
+      monday.setHours(0, 0, 0, 0);
+      
+      console.log("Week starting Monday (workouts):", monday.toISOString());
+      
+      // Map data to the correct days of the week
       data.forEach(dayData => {
+        // Parse the date and set time to midnight for accurate comparison
         const entryDate = new Date(dayData.date);
-        // Compare if this entry is from current week
+        entryDate.setHours(0, 0, 0, 0);
+        
+        // Only include data from this week
         if (entryDate >= monday && entryDate <= today) {
-          // Calculate day index (0 = Monday)
+          // Calculate day index (0 = Monday, 6 = Sunday)
           const dayIndex = entryDate.getDay() === 0 ? 6 : entryDate.getDay() - 1;
+          
+          console.log(`Workout data for ${entryDate.toISOString().split('T')[0]} (index ${dayIndex}): ${dayData.total}`);
+          
           weeklyData[dayIndex] = dayData.total;
         }
       });
       
+      console.log("Weekly workout data:", weeklyData);
       return weeklyData;
     } catch (err) {
       console.error('Error fetching weekly workout data:', err);
-      // Return sample data that looks realistic
-      return [320, 410, 380, 520, 470, 600, 350]; 
+      // Return empty data instead of fake data
+      return Array(7).fill(0);
     }
   };
   

@@ -5,6 +5,27 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
   color: #333;
+  position: relative;
+}
+
+/* Scroll indicator */
+.food-table-container::after {
+  content: "⟷ Scroll to see more";
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+@media (min-width: 1200px) {
+  .food-table-container::after {
+    display: none;
+  }
 }
 
 body.dark-mode .food-table-container {
@@ -27,12 +48,17 @@ body.dark-mode .food-table-container h2 {
   -webkit-overflow-scrolling: touch;
   margin-bottom: 15px;
   width: 100%;
+  max-width: 100%;
+  display: block;
+  -ms-overflow-style: -ms-autohiding-scrollbar; /* IE11 */
+  scrollbar-width: thin; /* Firefox */
 }
 
 .food-table {
   width: 100%;
+  table-layout: auto;
   border-collapse: collapse;
-  min-width: 600px;
+  min-width: 1100px; /* Increased to accommodate all columns */
 }
 
 .food-table th,
@@ -117,7 +143,23 @@ body.dark-mode .no-foods {
   vertical-align: middle;
   font-size: 15px;
   transition: background 0.2s;
+  white-space: nowrap;
+  padding: 12px 8px;
 }
+
+/* Column sizing */
+.food-table th:nth-child(1), .food-table td:nth-child(1) { width: 110px; } /* Date */
+.food-table th:nth-child(2), .food-table td:nth-child(2) { width: 80px; } /* Time */
+.food-table th:nth-child(3), .food-table td:nth-child(3) { width: 90px; } /* Meal */
+.food-table th:nth-child(4), .food-table td:nth-child(4) { width: 120px; } /* Food */
+.food-table th:nth-child(5), .food-table td:nth-child(5) { width: 100px; } /* Brand */
+.food-table th:nth-child(6), .food-table td:nth-child(6) { width: 90px; } /* Serving */
+.food-table th:nth-child(7), .food-table td:nth-child(7) { width: 60px; } /* Qty */
+.food-table th:nth-child(8), .food-table td:nth-child(8) { width: 60px; } /* Unit */
+.food-table th:nth-child(9), .food-table td:nth-child(9) { width: 80px; } /* Calories */
+.food-table th:nth-child(10), .food-table td:nth-child(10) { width: 90px; } /* Protein */
+.food-table th:nth-child(11), .food-table td:nth-child(11) { width: 90px; } /* Carbs */
+.food-table th:nth-child(12), .food-table td:nth-child(12) { width: 70px; } /* Fat */
 
 .food-table.modern td.right {
   text-align: right;
@@ -158,35 +200,71 @@ body.dark-mode .food-table.modern tr:hover {
 }
 
 /* Responsive styles */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .food-table-container {
     padding: 15px;
   }
   
   .food-table th,
   .food-table td {
-    padding: 8px 10px;
-    font-size: 0.8rem;
+    padding: 10px 8px;
+    font-size: 0.85rem;
   }
   
   .food-table {
-    min-width: 550px;
+    min-width: 1100px;
+  }
+  
+  .table-responsive {
+    border-left: 4px solid #e0e7ff;
+    border-right: 4px solid #e0e7ff;
+  }
+  
+  body.dark-mode .table-responsive {
+    border-left: 4px solid #23272f;
+    border-right: 4px solid #23272f;
+  }
+  
+  /* More visible scrollbar */
+  .table-responsive::-webkit-scrollbar {
+    height: 8px;
+    background-color: #f1f1f1;
+  }
+  
+  .table-responsive::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #888;
+  }
+  
+  body.dark-mode .table-responsive::-webkit-scrollbar {
+    background-color: #2a2a2a;
+  }
+  
+  body.dark-mode .table-responsive::-webkit-scrollbar-thumb {
+    background-color: #555;
+  }
+}
+
+@media (max-width: 768px) {
+  .food-table-container h2 {
+    font-size: 1.3rem;
+  }
+  
+  .food-table th,
+  .food-table td {
+    padding: 8px 6px;
+    font-size: 0.8rem;
+  }
+  
+  .food-table-container::after {
+    padding: 4px 8px;
+    font-size: 11px;
   }
 }
 
 @media (max-width: 480px) {
   .food-table-container h2 {
     font-size: 1.2rem;
-  }
-  
-  .food-table th,
-  .food-table td {
-    padding: 6px 8px;
-    font-size: 0.75rem;
-  }
-  
-  .food-table {
-    min-width: 500px;
   }
 }
 

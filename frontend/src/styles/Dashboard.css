@@ -54,24 +54,44 @@ body.dark-mode .sidebar {
   margin-left: 250px;
   transition: margin-left 0.3s ease;
   background-color: #f8f9fa;
+  width: calc(100% - 250px);
+  box-sizing: border-box;
 }
 
 body.dark-mode .dashboard-content {
   background-color: #1a1a1a;
 }
 
-.sidebar.collapsed ~ .dashboard-content {
+.dashboard-content.sidebar-collapsed {
   margin-left: 70px;
+  width: calc(100% - 70px);
 }
 
 .dashboard-right-side {
   padding: 2rem;
   width: 100%;
   box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body.dark-mode .dashboard-right-side {
   color: #f0f0f0;
+}
+
+/* Ensure tables and content don't get cut off */
+.dashboard-right-side table {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+.dashboard-right-side .chart-container,
+.dashboard-right-side .widget-container,
+.dashboard-right-side .card-container {
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 /* Loading State */
@@ -250,10 +270,12 @@ body.dark-mode .sidebar-overlay {
   
   .dashboard-content {
     margin-left: 0;
+    width: 100%;
   }
   
-  .sidebar.collapsed ~ .dashboard-content {
+  .dashboard-content.sidebar-collapsed {
     margin-left: 0;
+    width: 100%;
   }
   
   .mobile-menu-toggle {
@@ -267,6 +289,7 @@ body.dark-mode .sidebar-overlay {
   .dashboard-right-side {
     padding: 1rem;
     padding-top: 60px; /* Add space for the fixed toggle button */
+    overflow-x: auto;
   }
 }
 
@@ -274,6 +297,28 @@ body.dark-mode .sidebar-overlay {
 @media (min-width: 769px) and (max-width: 1024px) {
   .dashboard-right-side {
     padding: 1.5rem;
+  }
+  
+  .dashboard-content {
+    width: calc(100% - 250px);
+  }
+  
+  .dashboard-content.sidebar-collapsed {
+    width: calc(100% - 70px);
+  }
+  
+  /* Ensure tables aren't too wide on tablets */
+  .dashboard-right-side table {
+    font-size: 0.9rem;
+  }
+}
+
+/* Larger screens */
+@media (min-width: 1025px) {
+  .dashboard-right-side {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 }
 

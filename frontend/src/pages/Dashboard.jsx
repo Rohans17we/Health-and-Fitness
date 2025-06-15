@@ -89,8 +89,7 @@ const Dashboard = () => {
       </button>
       
       {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)}></div>}
-      
-      <Sidebar 
+        <Sidebar 
         user={user} 
         isOpen={sidebarOpen} 
         onClose={() => setSidebarOpen(false)}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BsHeartFill } from 'react-icons/bs';
 import './WeeklyCaloriesConsumed.css';
 
@@ -10,6 +10,20 @@ import './WeeklyCaloriesConsumed.css';
  * @param {Array} props.weeklyData - Array of daily calorie data for the week [day1, day2, ...]
  */
 const WeeklyCaloriesConsumed = ({ goal = 2500, current = 0, weeklyData = [] }) => {
+  const [displayData, setDisplayData] = useState([]);
+  
+  useEffect(() => {
+    // If real data is provided and valid, use it
+    if (Array.isArray(weeklyData) && weeklyData.length > 0) {
+      console.log("Weekly calories consumed data from props:", weeklyData);
+      setDisplayData(weeklyData);
+    } else {
+      // Default data if none provided
+      console.log("Using default weekly calories consumed data");
+      setDisplayData([1750, 2100, 1920, 2300, 1840, 1650, 1420]);
+    }
+  }, [weeklyData]);
+  
   // Format the calories
   const formattedGoal = Math.round(goal).toLocaleString();
   const formattedCurrent = Math.round(current).toLocaleString();
@@ -17,19 +31,15 @@ const WeeklyCaloriesConsumed = ({ goal = 2500, current = 0, weeklyData = [] }) =
   // Calculate the percentage progress
   const progressPercentage = goal > 0 ? Math.min(Math.round((current / goal) * 100), 100) : 0;
   
-  // Default data if none provided
-  const defaultWeeklyData = [1750, 2100, 1920, 2300, 1840, 1650, 1420];
-  const dailyData = weeklyData.length >= 7 ? weeklyData : defaultWeeklyData;
-  
   // Find max value for scaling the bars
-  const maxValue = Math.max(...dailyData, goal);
+  const maxValue = Math.max(...displayData, goal);
   
   // Get weekday names
   const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   
   // Calculate weekly average
   const weeklyAverage = Math.round(
-    dailyData.reduce((sum, value) => sum + value, 0) / dailyData.length
+    displayData.reduce((sum, value) => sum + value, 0) / displayData.length
   );
   
   // Get current day index (0 = Monday, 6 = Sunday)
@@ -57,7 +67,7 @@ const WeeklyCaloriesConsumed = ({ goal = 2500, current = 0, weeklyData = [] }) =
       <div className="weekly-calories-consumed-current">{weeklyAverage} cal</div>
       
       <div className="weekly-calories-consumed-chart">
-        {dailyData.map((value, index) => (
+        {displayData.map((value, index) => (
           <div key={index} className="weekly-calories-consumed-bar-container">
             <div 
               className={`weekly-calories-consumed-bar ${index === activeIndex ? 'active' : ''}`} 
