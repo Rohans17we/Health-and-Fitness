@@ -156,6 +156,7 @@
   margin: 20px auto;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 /* Weekly calories widgets specific styling */
@@ -805,6 +806,7 @@
   margin: 20px auto;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .widget-item.nutrition-pie {

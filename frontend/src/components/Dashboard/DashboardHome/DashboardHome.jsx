@@ -465,7 +465,19 @@ const DashboardHome = ({ user }) => {  const [isLoading, setIsLoading] = useStat
             </>
           )}
         </div>
-          {/* Weekly Widgets */}
+          
+        {/* Nutrition Pie Chart */}
+        <div className="nutrition-pie-container">
+          {metricsLoading ? (
+            <div className="health-metrics-loading">Loading nutrition data...</div>
+          ) : (
+            <div className="widget-item nutrition-pie">
+              <NutritionPieChart nutritionData={healthMetrics.nutritionEntries} />
+            </div>
+          )}
+        </div>
+          
+        {/* Weekly Widgets */}
         <div className="weekly-widget-container">
           {metricsLoading ? (
             <div className="health-metrics-loading">Loading weekly data...</div>
@@ -484,17 +496,6 @@ const DashboardHome = ({ user }) => {  const [isLoading, setIsLoading] = useStat
                 />
               </div>
             </>
-          )}
-        </div>
-          
-        {/* Nutrition Pie Chart */}
-        <div className="nutrition-pie-container">
-          {metricsLoading ? (
-            <div className="health-metrics-loading">Loading nutrition data...</div>
-          ) : (
-            <div className="widget-item nutrition-pie">
-              <NutritionPieChart nutritionData={healthMetrics.nutritionEntries} />
-            </div>
           )}
         </div>
       </div>
