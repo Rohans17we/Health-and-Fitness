@@ -7,6 +7,7 @@ import SleepTracking from '../../Widgets/SleepTracking';
 import WaterIntake from '../../Widgets/WaterIntake';
 import WeeklyCaloriesConsumed from '../../Widgets/WeeklyCaloriesConsumed';
 import WeeklyCaloriesBurned from '../../Widgets/WeeklyCaloriesBurned';
+import NutritionPieChart from './NutritionPieChart';
 
 const DashboardHome = ({ user }) => {  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -21,7 +22,8 @@ const DashboardHome = ({ user }) => {  const [isLoading, setIsLoading] = useStat
     waterGoal: 3000, // Default goal: 3000mL
     calorieGoal: 2500, // Default calorie goal
     weeklyCaloriesConsumed: [], // Weekly consumed calories data
-    weeklyCaloriesBurned: [] // Weekly burned calories data
+    weeklyCaloriesBurned: [], // Weekly burned calories data
+    nutritionEntries: [] // Today's nutrition entries for the pie chart
   });
   
   const [metricsLoading, setMetricsLoading] = useState(true);
@@ -114,7 +116,8 @@ const DashboardHome = ({ user }) => {  const [isLoading, setIsLoading] = useStat
         waterGoal: 3000, // Default goal is 3000mL
         calorieGoal: calorieGoal,
         weeklyCaloriesConsumed: weeklyNutrition || [],
-        weeklyCaloriesBurned: weeklyWorkouts || []
+        weeklyCaloriesBurned: weeklyWorkouts || [],
+        nutritionEntries: nutrition.entries || [] // Today's nutrition entries
       });
     } catch (err) {
       console.error('Error fetching health metrics:', err);
@@ -128,7 +131,8 @@ const DashboardHome = ({ user }) => {  const [isLoading, setIsLoading] = useStat
         waterGoal: 3000, // 3000mL
         calorieGoal: 2500,
         weeklyCaloriesConsumed: [],
-        weeklyCaloriesBurned: []
+        weeklyCaloriesBurned: [],
+        nutritionEntries: []
       });
     } finally {
       setMetricsLoading(false);
@@ -480,6 +484,17 @@ const DashboardHome = ({ user }) => {  const [isLoading, setIsLoading] = useStat
                 />
               </div>
             </>
+          )}
+        </div>
+          
+        {/* Nutrition Pie Chart */}
+        <div className="nutrition-pie-container">
+          {metricsLoading ? (
+            <div className="health-metrics-loading">Loading nutrition data...</div>
+          ) : (
+            <div className="widget-item nutrition-pie">
+              <NutritionPieChart nutritionData={healthMetrics.nutritionEntries} />
+            </div>
           )}
         </div>
       </div>
